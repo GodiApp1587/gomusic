@@ -1,4 +1,4 @@
-package com.shadow.blackhole
+package com.godimexico.gomusic
 
 import MainActivity
 import android.appwidget.AppWidgetManager
@@ -37,19 +37,19 @@ internal fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManage
 
     val skipNextIntent = HomeWidgetBackgroundIntent.getBroadcast(
             context,
-            Uri.parse("blackhole://controls/skipNext")
+            Uri.parse("BlackHole://controls/skipNext")
     )
     setOnClickPendingIntent(R.id.widget_button_next, skipNextIntent)
 
     val skipPreviousIntent = HomeWidgetBackgroundIntent.getBroadcast(
             context,
-            Uri.parse("blackhole://controls/skipPrevious")
+            Uri.parse("BlackHole://controls/skipPrevious")
     )
     setOnClickPendingIntent(R.id.widget_button_prev, skipPreviousIntent)
 
     val playPauseIntent = HomeWidgetBackgroundIntent.getBroadcast(
             context,
-            Uri.parse("blackhole://controls/playPause")
+            Uri.parse("BlackHole://controls/playPause")
     )
     setOnClickPendingIntent(R.id.widget_button_play_pause, playPauseIntent)
 

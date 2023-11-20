@@ -40,7 +40,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.shadow.blackhole"
+        applicationId "com.godimexico.gomusic"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()

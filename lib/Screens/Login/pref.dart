@@ -477,7 +477,7 @@ class _PrefScreenState extends State<PrefScreen> {
                                                       Navigator.pop(
                                                         context,
                                                       );
-                                                      if (region != 'India') {
+                                                      if (region != 'Mexico') {
                                                         ShowSnackBar()
                                                             .showSnackBar(
                                                           context,
@@ -525,7 +525,7 @@ class _PrefScreenState extends State<PrefScreen> {
                                     height: 20.0,
                                   ),
                                   Visibility(
-                                    visible: region != 'India',
+                                    visible: region != 'Mexico',
                                     child: BoxSwitchTile(
                                       title: Text(
                                         AppLocalizations.of(
@@ -534,7 +534,7 @@ class _PrefScreenState extends State<PrefScreen> {
                                             .useProxy,
                                       ),
                                       keyName: 'useProxy',
-                                      defaultValue: false,
+                                      defaultValue: true,
                                       contentPadding: EdgeInsets.zero,
                                       onChanged: ({
                                         required bool val,

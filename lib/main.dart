@@ -173,7 +173,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    HomeWidget.setAppGroupId('com.shadow.blackhole');
+    HomeWidget.setAppGroupId('com.godimexico.gomusic');
     HomeWidget.registerBackgroundCallback(backgroundCallback);
     final String systemLangCode = Platform.localeName.substring(0, 2);
     final String? lang = Hive.box('settings').get('lang') as String?;

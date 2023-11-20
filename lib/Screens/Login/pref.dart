@@ -58,9 +58,9 @@ class _PrefScreenState extends State<PrefScreen> {
   ];
   List<bool> isSelected = [true, false];
   List preferredLanguage = Hive.box('settings')
-      .get('preferredLanguage', defaultValue: ['Hindi'])?.toList() as List;
+      .get('preferredLanguage', defaultValue: ['Spanish'])?.toList() as List;
   String region =
-      Hive.box('settings').get('region', defaultValue: 'India') as String;
+      Hive.box('settings').get('region', defaultValue: 'Mexico') as String;
   bool useProxy =
       Hive.box('settings').get('useProxy', defaultValue: false) as bool;
 

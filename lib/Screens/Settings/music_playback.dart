@@ -24,10 +24,10 @@ class _MusicPlaybackPageState extends State<MusicPlaybackPage> {
   String ytQuality =
       Hive.box('settings').get('ytQuality', defaultValue: 'Low') as String;
   String region =
-      Hive.box('settings').get('region', defaultValue: 'India') as String;
+      Hive.box('settings').get('region', defaultValue: 'Global') as String;
   List<String> languages = [
-    'Hindi',
     'English',
+    'Hindi',
     'Punjabi',
     'Tamil',
     'Telugu',
@@ -44,7 +44,7 @@ class _MusicPlaybackPageState extends State<MusicPlaybackPage> {
     'Assamese',
   ];
   List preferredLanguage = Hive.box('settings')
-      .get('preferredLanguage', defaultValue: ['Hindi'])?.toList() as List;
+      .get('preferredLanguage', defaultValue: ['English'])?.toList() as List;
 
   @override
   Widget build(BuildContext context) {

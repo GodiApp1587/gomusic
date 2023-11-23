@@ -140,7 +140,7 @@ class MyTheme with ChangeNotifier {
     _useSystemTheme =
         settingsBox.get('useSystemTheme', defaultValue: false) as bool;
 
-    accentColor = settingsBox.get('themeColor', defaultValue: 'Teal') as String;
+    accentColor = settingsBox.get('themeColor', defaultValue: 'Light Green') as String;
     canvasColor =
         settingsBox.get('canvasColor', defaultValue: 'Grey') as String;
     cardColor = settingsBox.get('cardColor', defaultValue: 'Grey900') as String;
@@ -311,7 +311,7 @@ class MyTheme with ChangeNotifier {
         return Colors.white;
 
       default:
-        return _isDark ? Colors.tealAccent[400]! : Colors.lightBlueAccent[400]!;
+        return _isDark ? Colors.lightGreenAccent[500]! : Colors.lightBlue[400]!;
     }
   }
 

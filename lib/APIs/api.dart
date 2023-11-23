@@ -26,7 +26,7 @@ import 'package:logging/logging.dart';
 
 class SaavnAPI {
   List preferredLanguages = Hive.box('settings')
-      .get('preferredLanguage', defaultValue: ['Hindi']) as List;
+      .get('preferredLanguage', defaultValue: ['English']) as List;
   Map<String, String> headers = {};
   String baseUrl = 'www.jiosaavn.com';
   String apiStr = '/api.php?_format=json&_marker=0&api_version=4&ctx=web6dot0';
@@ -109,7 +109,7 @@ class SaavnAPI {
   Future<Map> fetchHomePageData() async {
     Map result = {};
     try {
-      final res = await getResponse(endpoints['homeData']!, useProxy: false);
+      final res = await getResponse(endpoints['homeData']!, useProxy: true);
       if (res.statusCode == 200) {
         final Map data = json.decode(res.body) as Map;
         result = await FormatResponse.formatHomePageData(data);

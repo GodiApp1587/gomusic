@@ -40,6 +40,7 @@ import 'package:blackhole/Screens/Top Charts/top.dart';
 import 'package:blackhole/Screens/YouTube/youtube_home.dart';
 import 'package:blackhole/Services/ext_storage_provider.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -47,6 +48,7 @@ import 'package:logging/logging.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:unicons/unicons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
@@ -302,14 +304,23 @@ class _HomePageState extends State<HomePage> {
                       text: TextSpan(
                         text: AppLocalizations.of(context)!.appTitle,
                         style: const TextStyle(
-                          fontSize: 30.0,
+                          fontSize: 31.0,
                           fontWeight: FontWeight.w600,
+
+                          shadows: [
+                            Shadow(
+                              color: Colors.black,
+                              offset: Offset(2, 2),
+                              blurRadius: 5.2
+                            ),
+                          ],
                         ),
                         children: <TextSpan>[
                           TextSpan(
                             text: appVersion == null ? '' : '\nv$appVersion',
                             style: const TextStyle(
-                              fontSize: 7.0,
+                              fontSize: 8.0,
+
                             ),
                           ),
                         ],
@@ -324,8 +335,8 @@ class _HomePageState extends State<HomePage> {
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
-                            Colors.black.withOpacity(0.8),
-                            Colors.black.withOpacity(0.1),
+                            Colors.black87.withOpacity(0.9),
+                            Colors.black.withOpacity(0.01),
                           ],
                         ).createShader(
                           Rect.fromLTRB(0, 0, rect.width, rect.height),
@@ -337,8 +348,8 @@ class _HomePageState extends State<HomePage> {
                         alignment: Alignment.topCenter,
                         image: AssetImage(
                           Theme.of(context).brightness == Brightness.dark
-                              ? 'assets/header-dark.jpg'
-                              : 'assets/header.jpg',
+                              ? 'assets/drawer.png'
+                              : 'assets/drawer.png',
                         ),
                       ),
                     ),
@@ -363,9 +374,7 @@ class _HomePageState extends State<HomePage> {
                                 contentPadding: const EdgeInsets.symmetric(
                                   horizontal: 20.0,
                                 ),
-                                leading: const Icon(
-                                  Icons.home_rounded,
-                                ),
+                                leading: const  Icon(EneftyIcons.home_3_bold),
                                 selected: _selectedIndex.value ==
                                     sectionsToShow.indexOf('Home'),
                                 selectedColor:
@@ -524,7 +533,7 @@ class _HomePageState extends State<HomePage> {
                     groupAlignment: 0.0,
                     backgroundColor:
                         // Colors.transparent,
-                        Theme.of(context).cardColor,
+                       Theme.of(context).cardColor,
                     selectedIndex: indexValue,
                     onDestinationSelected: (int index) {
                       onItemTapped(index);

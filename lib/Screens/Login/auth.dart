@@ -114,22 +114,18 @@ class _AuthScreenState extends State<AuthScreen> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
+                                const SizedBox(width: 68,),
                                 Center(
-                                  child: Row(
+                                  child: Image.asset(
+                                    'assets/logo.png', // Ruta de tu imagen
+                                    // Ajusta el ancho y alto según sea necesario
+                                    width: 191,
 
-                                    children: [
-                                      Image.asset(
-                                        'assets/music.png', // Ruta de tu imagen
-                                        // Ajusta el ancho y alto según sea necesario
-                                        width: 317,
-
-                                        // Puedes agregar más propiedades para personalizar la imagen según tus necesidades
-                                      ),
-                                    ],
+                                    // Puedes agregar más propiedades para personalizar la imagen según tus necesidades
                                   ),
                                 ),
 const SizedBox(
-  height: 33,
+  height: 37,
 ),
                                 Column(
                                   children: [
@@ -142,7 +138,7 @@ const SizedBox(
                                           left: 10,
                                           right: 10,
                                         ),
-                                        width: 350,
+                                        width: 360,
                                         height: 57,
                                         borderRadius: 12,
                                         blur: 14,
@@ -181,11 +177,9 @@ const SizedBox(
                                                   color: Colors.transparent,
                                                 ),
                                               ),
-                                              prefixIcon: Icon(
+                                              prefixIcon: const Icon(
                                                 Icons.person_2_rounded,
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .secondary,
+                                                color: Colors.lightGreenAccent,
                                               ),
                                               border: InputBorder.none,
                                               hintText: AppLocalizations.of(context)!
@@ -232,14 +226,12 @@ const SizedBox(
                                         height: 58.0,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(10.0),
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
+                                          color: Colors.lightGreenAccent,
                                           boxShadow: const [
                                             BoxShadow(
-                                              color: Colors.black12,
-                                              blurRadius: 5.0,
-                                              offset: Offset(1.6, 3.0),
+                                              color: Colors.yellowAccent,
+                                              blurRadius: 8.0,
+                                              offset: Offset(0.3, 0.6),
                                             ),
                                           ],
                                         ),

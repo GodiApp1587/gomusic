@@ -158,7 +158,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale _locale = const Locale('en', '');
+  Locale _locale = const Locale('en', 'es');
   late StreamSubscription _intentTextStreamSubscription;
   late StreamSubscription _intentDataStreamSubscription;
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();

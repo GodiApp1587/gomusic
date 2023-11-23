@@ -41,7 +41,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 bool fetched = false;
 List preferredLanguage = Hive.box('settings')
-    .get('preferredLanguage', defaultValue: ['Hindi']) as List;
+    .get('preferredLanguage', defaultValue: ['English']) as List;
 List likedRadio =
     Hive.box('settings').get('likedRadio', defaultValue: []) as List;
 Map data = Hive.box('cache').get('homepage', defaultValue: {}) as Map;
@@ -635,7 +635,7 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                                           : [item['id'].toString()],
                                       language: item['more_info']['language']
                                               ?.toString() ??
-                                          'hindi',
+                                          'english',
                                       stationType: item['more_info']
                                               ['featured_station_type']
                                           .toString(),

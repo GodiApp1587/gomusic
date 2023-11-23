@@ -16,13 +16,13 @@ class _AnimatingBg1State extends State<AnimatingBg1>
     Color(0xff080d28),
     Color(0xff0a0e38),
     Color(0xff2f0419),
-    Color(0xff03026c),
-    Color(0xff022c03),
+    Color(0xff05044b),
+    Color(0xff021a02),
   ];
   List<Alignment> alignmentList = [Alignment.topCenter, Alignment.bottomCenter];
   int index = 0;
-  Color bottomColor = Color(0xff092646);
-  Color topColor = Color(0xff023109);
+  Color bottomColor = Color(0xff030c17);
+  Color topColor = Color(0xff021805);
   Alignment begin = Alignment.bottomCenter;
   Alignment end = Alignment.topCenter;
 
@@ -34,7 +34,7 @@ class _AnimatingBg1State extends State<AnimatingBg1>
           () {
         setState(
               () {
-            bottomColor = Color(0xff211662);
+            bottomColor = Color(0xff100a2f);
           },
         );
       },
@@ -44,7 +44,7 @@ class _AnimatingBg1State extends State<AnimatingBg1>
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(seconds: 3),
+      duration: Duration(seconds: 2),
       onEnd: () {
         setState(
               () {

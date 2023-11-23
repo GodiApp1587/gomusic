@@ -29,9 +29,9 @@ class _OthersPageState extends State<OthersPage> {
   List includedExcludedPaths = Hive.box('settings')
       .get('includedExcludedPaths', defaultValue: []) as List;
   String lang =
-      Hive.box('settings').get('lang', defaultValue: 'English') as String;
+      Hive.box('settings').get('lang', defaultValue: 'Spanish') as String;
   bool useProxy =
-      Hive.box('settings').get('useProxy', defaultValue: false) as bool;
+      Hive.box('settings').get('useProxy', defaultValue: true) as bool;
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class _OthersPageState extends State<OthersPage> {
                         MyApp.of(context).setLocale(
                           Locale.fromSubtags(
                             languageCode:
-                                LanguageCodes.languageCodes[newValue] ?? 'en',
+                                LanguageCodes.languageCodes[newValue] ?? 'es',
                           ),
                         );
                         Hive.box('settings').put('lang', newValue);
@@ -487,7 +487,7 @@ class _OthersPageState extends State<OthersPage> {
                     .useProxySub,
               ),
               keyName: 'useProxy',
-              defaultValue: false,
+              defaultValue: true,
               isThreeLine: true,
               onChanged: ({required bool val, required Box box}) {
                 useProxy = val;

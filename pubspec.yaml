@@ -18,6 +18,7 @@ dependencies:
       url: https://github.com/Sangwan5688/Audiotagger
       ref: 90f2db5
   # bitsdojo_window: ^0.1.1+1 #For Desktops
+  background_app_bar: ^2.1.0
   cached_network_image: ^3.3.0
   carousel_slider: ^4.2.1
   connectivity_plus: ^5.0.1
@@ -25,6 +26,7 @@ dependencies:
   dart_des: ^1.0.2
   device_info_plus: ^9.0.2
   # ffmpeg_kit_flutter_audio: ^6.0.3
+  enefty_icons: ^1.0.7
   file_picker: ^6.1.1
   flip_card: ^0.7.0
   flutter:
@@ -42,6 +44,7 @@ dependencies:
   hive_flutter: ^1.1.0
   home_widget: ^0.3.0
   html_unescape: ^2.0.0
+  icons_plus: ^4.0.0
   just_audio: ^0.9.36
   # Discontinued, Use just_audio_windows instead.
   # just_audio_libwinmedia: ^0.0.4 # For windows and linux.
@@ -62,6 +65,7 @@ dependencies:
   share_plus: ^7.0.2
   sizer: ^2.0.15
   sliding_up_panel: ^2.0.0+1
+  unicons: ^2.1.1
   url_launcher: ^6.1.14
   uuid: ^3.0.7
   workmanager: ^0.5.1
@@ -81,15 +85,25 @@ flutter:
 
   assets:
     - assets/
+    - assets/back.png
+    - assets/drawer.png
     - assets/fondo.png
+    - assets/fondo_ap_settings.png
+    - assets/fondo_app.png
+    - assets/fondo_theme.png
+    - assets/google.png
     - assets/inicio.png
     - assets/music.png
+    - assets/play_black.png
+    - assets/play_white.png
     - assets/splash.png
+    - assets/store_black.png
+    - assets/store_white.png
 
 msix_config:
-  display_name: BlackHole
-  publisher_display_name: Ankit Sangwan
-  identity_name: com.shadow.blackhole
+  display_name: GoMusic
+  publisher_display_name: Uriel Garcia
+  identity_name: com.godimexico.mexico
   icons_background_color: transparent
   logo_path: assets/ic_launcher.png
   file_extension: .mp3, .m4a

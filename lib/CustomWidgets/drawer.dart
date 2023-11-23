@@ -30,6 +30,7 @@ Widget homeDrawer({
       child: IconButton(
         icon: const Icon(
           Icons.horizontal_split_rounded,
+          color: Colors.white,
         ),
         // color: Theme.of(context).iconTheme.color,
         onPressed: () {

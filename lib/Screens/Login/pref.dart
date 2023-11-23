@@ -22,6 +22,7 @@ import 'package:blackhole/CustomWidgets/gradient_containers.dart';
 import 'package:blackhole/CustomWidgets/snackbar.dart';
 import 'package:blackhole/Helpers/backup_restore.dart';
 import 'package:blackhole/Helpers/config.dart';
+import 'package:blackhole/Models/animated_container.dart';
 import 'package:blackhole/constants/countrycodes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -62,7 +63,7 @@ class _PrefScreenState extends State<PrefScreen> {
   String region =
       Hive.box('settings').get('region', defaultValue: 'Mexico') as String;
   bool useProxy =
-      Hive.box('settings').get('useProxy', defaultValue: false) as bool;
+      Hive.box('settings').get('useProxy', defaultValue: true) as bool;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,7 @@ class _PrefScreenState extends State<PrefScreen> {
           child: Stack(
             children: [
               Positioned(
-                left: MediaQuery.sizeOf(context).width / 1.85,
+                left: MediaQuery.sizeOf(context).width / 2.5,
                 child: SizedBox(
                   width: MediaQuery.sizeOf(context).width,
                   height: MediaQuery.sizeOf(context).width,
@@ -83,9 +84,8 @@ class _PrefScreenState extends State<PrefScreen> {
                   ),
                 ),
               ),
-              const GradientContainer(
-                child: null,
-                opacity: true,
+              AnimatingBg1(
+
               ),
               Column(
                 children: [

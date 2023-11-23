@@ -17,7 +17,6 @@
  * Copyright (c) 2021-2023, Ankit Sangwan
  */
 
-import 'package:blackhole/CustomWidgets/copy_clipboard.dart';
 import 'package:blackhole/CustomWidgets/gradient_containers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -47,7 +46,6 @@ class _AboutScreenState extends State<AboutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final double separationHeight = MediaQuery.sizeOf(context).height * 0.035;
 
     return GradientContainer(
       child: Stack(
@@ -55,13 +53,10 @@ class _AboutScreenState extends State<AboutScreen> {
           Positioned(
             left: MediaQuery.sizeOf(context).width / 2,
             top: MediaQuery.sizeOf(context).width / 5,
-            child: SizedBox(
-              width: MediaQuery.sizeOf(context).width,
-              child: const Image(
-                fit: BoxFit.fill,
-                image: AssetImage(
-                  'assets/icon-white-trans.png',
-                ),
+            child: const Image(
+              fit: BoxFit.fitWidth,
+              image: AssetImage(
+                'assets/ic_launcher.png',
               ),
             ),
           ),
@@ -72,9 +67,9 @@ class _AboutScreenState extends State<AboutScreen> {
           Scaffold(
             appBar: AppBar(
               backgroundColor: Theme.of(context).brightness == Brightness.dark
-                  ? Colors.transparent
-                  : Theme.of(context).colorScheme.secondary,
-              elevation: 0,
+                  ? const Color(0xFF10111E)
+                  : const Color(0xFFFFFFFF),
+              elevation: 30,
               title: Text(
                 AppLocalizations.of(context)!.about,
                 style: const TextStyle(
@@ -84,171 +79,173 @@ class _AboutScreenState extends State<AboutScreen> {
               centerTitle: true,
             ),
             backgroundColor: Colors.transparent,
-            body: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
+            body: Stack(
+              fit: StackFit.expand,
+              children: [
+                Container(
+    decoration: const BoxDecoration(
+    image: DecorationImage(
+    image: AssetImage('assets/fondo_ap_settings.png'), // Ruta de tu imagen
+    fit: BoxFit.cover, // Ajusta la imagen para cubrir el contenedor
+    ),
+    ),
+    ),
+                 SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Card(
-                        elevation: 15,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(100.0),
-                        ),
-                        clipBehavior: Clip.antiAlias,
-                        child: const SizedBox(
-                          width: 150,
-                          child: Image(
-                            image: AssetImage('assets/ic_launcher.png'),
+                      Column(
+                        children: [
+                          const SizedBox(
+                            height: 20,
                           ),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Text(
-                        AppLocalizations.of(context)!.appTitle,
-                        style: const TextStyle(
-                          fontSize: 35,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text('v$appVersion'),
-                    ],
-                  ),
-                  SizedBox(
-                    height: separationHeight,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.aboutLine1,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(fontSize: 16),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            launchUrl(
-                              Uri.parse(
-                                'https://github.com/Sangwan5688/BlackHole',
+                          Card(
+                            elevation: 15,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100.0),
+                            ),
+                            clipBehavior: Clip.antiAlias,
+                            child: const SizedBox(
+                              width: 160,
+                              child: Image(
+                                image: AssetImage('assets/logo.png'),
                               ),
-                              mode: LaunchMode.externalApplication,
-                            );
-                          },
-                          child: SizedBox(
-                            width: MediaQuery.sizeOf(context).width / 4,
-                            child: Image(
-                              image: Theme.of(context).brightness ==
-                                      Brightness.dark
-                                  ? const AssetImage(
-                                      'assets/GitHub_Logo_White.png',
-                                    )
-                                  : const AssetImage('assets/GitHub_Logo.png'),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Text(
+                            AppLocalizations.of(context)!.appTitle,
+                            style: const TextStyle(
+                              fontSize: 39,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text('v$appVersion'),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.aboutLine1,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                launchUrl(
+                                  Uri.parse(
+                                    'https://gomusic.grwebsite.com/',
+                                  ),
+                                  mode: LaunchMode.externalApplication,
+                                );
+                              },
+                              child: SizedBox(
+                                width: MediaQuery.sizeOf(context).width / 4,
+                                child: Image(
+                                  image: Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? const AssetImage(
+                                          'assets/google.png',
+                                        )
+                                      : const AssetImage('assets/google.png'),
+                                ),
+                              ),
+                            ),
+                            Text(
+                              AppLocalizations.of(context)!.aboutLine2,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      Column(
+                        children: [
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.transparent,
+                              foregroundColor: Colors.transparent,
+                            ),
+                            onPressed: () {
+                              launchUrl(
+                                Uri.parse(
+                                  'https://play.google.com/store/apps/details?id=com.godimexico.gomusic',
+                                ),
+                                mode: LaunchMode.externalApplication,
+                              );
+                            },
+                            child: SizedBox(
+                              width: MediaQuery.sizeOf(context).width / 2,
+                              child: const Image(
+                                image: AssetImage('assets/play_white.png'),
+                              ),
+                            ),
+                          ),
+                         const SizedBox(height: 10),
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                              backgroundColor: Colors.transparent,
+                              foregroundColor: Colors.transparent,
+                            ),
+                            onPressed: () {
+                              const String upiUrl =
+                                  'https://www.apple.com/mx/app-store/';
+                              launchUrl(
+                                Uri.parse(upiUrl),
+                                mode: LaunchMode.externalApplication,
+                              );
+                            },
+
+                            child: SizedBox(
+                              width: MediaQuery.sizeOf(context).width / 2,
+                              child: Image(
+                                image: AssetImage(
+                                  Theme.of(context).brightness == Brightness.dark
+                                      ? 'assets/store_white.png'
+                                      : 'assets/store_black.png',
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10,),
+                          Text(
+                            AppLocalizations.of(context)!.sponsor,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 17,
+                      ),
+                      SafeArea(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 30, 5, 20),
+                          child: Center(
+                            child: Text(
+                              AppLocalizations.of(context)!.madeBy,
+                              style: const TextStyle(fontSize: 13),
+                              textAlign: TextAlign.center,
                             ),
                           ),
                         ),
-                        Text(
-                          AppLocalizations.of(context)!.aboutLine2,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(fontSize: 16),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: separationHeight,
-                  ),
-                  Column(
-                    children: [
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.transparent,
-                          foregroundColor: Colors.transparent,
-                        ),
-                        onPressed: () {
-                          launchUrl(
-                            Uri.parse(
-                              'https://www.buymeacoffee.com/ankitsangwan',
-                            ),
-                            mode: LaunchMode.externalApplication,
-                          );
-                        },
-                        child: SizedBox(
-                          width: MediaQuery.sizeOf(context).width / 2,
-                          child: const Image(
-                            image: AssetImage('assets/black-button.png'),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        AppLocalizations.of(context)!.or,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 12),
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          backgroundColor: Colors.transparent,
-                          foregroundColor: Colors.transparent,
-                        ),
-                        onPressed: () {
-                          const String upiUrl =
-                              'upi://pay?pa=ankit.sangwan.5688@oksbi&pn=BlackHole&mc=5732&aid=uGICAgIDn98OpSw&tr=BCR2DN6T37O6DB3Q';
-                          launchUrl(
-                            Uri.parse(upiUrl),
-                            mode: LaunchMode.externalApplication,
-                          );
-                        },
-                        onLongPress: () {
-                          copyToClipboard(
-                            context: context,
-                            text: 'ankit.sangwan.5688@oksbi',
-                            displayText: AppLocalizations.of(
-                              context,
-                            )!
-                                .upiCopied,
-                          );
-                        },
-                        child: SizedBox(
-                          width: MediaQuery.sizeOf(context).width / 2,
-                          child: Image(
-                            image: AssetImage(
-                              Theme.of(context).brightness == Brightness.dark
-                                  ? 'assets/gpay-white.png'
-                                  : 'assets/gpay-white.png',
-                            ),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        AppLocalizations.of(context)!.sponsor,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 12),
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: separationHeight,
-                  ),
-                  SafeArea(
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(5, 30, 5, 20),
-                      child: Center(
-                        child: Text(
-                          AppLocalizations.of(context)!.madeBy,
-                          style: const TextStyle(fontSize: 12),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
+    ],
               ),
-            ),
+
           ),
         ],
       ),

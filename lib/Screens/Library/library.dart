@@ -39,90 +39,98 @@ class _LibraryPageState extends State<LibraryPage> {
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.sizeOf(context).width;
     final bool rotated = MediaQuery.sizeOf(context).height < screenWidth;
-    return ListView(
-      physics: const BouncingScrollPhysics(),
-      children: [
-        AppBar(
-          title: Text(
-            AppLocalizations.of(context)!.library,
-            style: TextStyle(
-              color: Theme.of(context).iconTheme.color,
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/fondo_app.png'), // Ruta de tu imagen
+          fit: BoxFit.cover, // Ajusta la imagen para cubrir el contenedor
+        ),
+      ),
+      child: ListView(
+        physics: const BouncingScrollPhysics(),
+        children: [
+          AppBar(
+            title: Text(
+              AppLocalizations.of(context)!.library,
+              style: TextStyle(
+                color: Theme.of(context).iconTheme.color,
+              ),
             ),
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            automaticallyImplyLeading: false,
+            leading: rotated ? null : homeDrawer(context: context),
           ),
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          automaticallyImplyLeading: false,
-          leading: rotated ? null : homeDrawer(context: context),
-        ),
-        LibraryTile(
-          title: AppLocalizations.of(context)!.nowPlaying,
-          icon: Icons.queue_music_rounded,
-          onTap: () {
-            Navigator.pushNamed(context, '/nowplaying');
-          },
-        ),
-        LibraryTile(
-          title: AppLocalizations.of(context)!.lastSession,
-          icon: Icons.history_rounded,
-          onTap: () {
-            Navigator.pushNamed(context, '/recent');
-          },
-        ),
-        LibraryTile(
-          title: AppLocalizations.of(context)!.favorites,
-          icon: Icons.favorite_rounded,
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => LikedSongs(
-                  playlistName: 'Favorite Songs',
-                  showName: AppLocalizations.of(context)!.favSongs,
+          LibraryTile(
+            title: AppLocalizations.of(context)!.nowPlaying,
+            icon: Icons.queue_music_rounded,
+            onTap: () {
+              Navigator.pushNamed(context, '/nowplaying');
+            },
+          ),
+          LibraryTile(
+            title: AppLocalizations.of(context)!.lastSession,
+            icon: Icons.history_rounded,
+            onTap: () {
+              Navigator.pushNamed(context, '/recent');
+            },
+          ),
+          LibraryTile(
+            title: AppLocalizations.of(context)!.favorites,
+            icon: Icons.favorite_rounded,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LikedSongs(
+                    playlistName: 'Favorite Songs',
+                    showName: AppLocalizations.of(context)!.favSongs,
+                  ),
                 ),
-              ),
-            );
-          },
-        ),
-        LibraryTile(
-          title: AppLocalizations.of(context)!.myMusic,
-          icon: MdiIcons.folderMusic,
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    (Platform.isWindows || Platform.isLinux || Platform.isMacOS)
-                        ? const DownloadedSongsDesktop()
-                        : const DownloadedSongs(
-                            showPlaylists: true,
-                          ),
-              ),
-            );
-          },
-        ),
-        LibraryTile(
-          title: AppLocalizations.of(context)!.downs,
-          icon: Icons.download_done_rounded,
-          onTap: () {
-            Navigator.pushNamed(context, '/downloads');
-          },
-        ),
-        LibraryTile(
-          title: AppLocalizations.of(context)!.playlists,
-          icon: Icons.playlist_play_rounded,
-          onTap: () {
-            Navigator.pushNamed(context, '/playlists');
-          },
-        ),
-        LibraryTile(
-          title: AppLocalizations.of(context)!.stats,
-          icon: Icons.auto_graph_rounded,
-          onTap: () {
-            Navigator.pushNamed(context, '/stats');
-          },
-        ),
-      ],
+              );
+            },
+          ),
+          LibraryTile(
+            title: AppLocalizations.of(context)!.myMusic,
+            icon: MdiIcons.folderMusic,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      (Platform.isWindows || Platform.isLinux || Platform.isMacOS)
+                          ? const DownloadedSongsDesktop()
+                          : const DownloadedSongs(
+                              showPlaylists: true,
+                            ),
+                ),
+              );
+            },
+          ),
+          LibraryTile(
+            title: AppLocalizations.of(context)!.downs,
+            icon: Icons.download_done_rounded,
+            onTap: () {
+              Navigator.pushNamed(context, '/downloads');
+            },
+          ),
+          LibraryTile(
+            title: AppLocalizations.of(context)!.playlists,
+            icon: Icons.playlist_play_rounded,
+            onTap: () {
+              Navigator.pushNamed(context, '/playlists');
+            },
+          ),
+          LibraryTile(
+            title: AppLocalizations.of(context)!.stats,
+            icon: Icons.auto_graph_rounded,
+            onTap: () {
+              Navigator.pushNamed(context, '/stats');
+            },
+          ),
+        ],
+      ),
     );
   }
 }

@@ -39,7 +39,13 @@ class _ThemePageState extends State<ThemePage> {
       ...userThemes.keys.map((theme) => theme as String),
       'Custom',
     ];
-    return GradientContainer(
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/fondo_app.png'), // Ruta de tu imagen
+          fit: BoxFit.cover, // Ajusta la imagen para cubrir el contenedor
+        ),
+      ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(

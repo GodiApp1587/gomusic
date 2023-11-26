@@ -69,7 +69,7 @@ class _AboutScreenState extends State<AboutScreen> {
               backgroundColor: Theme.of(context).brightness == Brightness.dark
                   ? const Color(0xFF10111E)
                   : const Color(0xFFFFFFFF),
-              elevation: 30,
+              elevation: 10,
               title: Text(
                 AppLocalizations.of(context)!.about,
                 style: const TextStyle(
@@ -225,9 +225,7 @@ class _AboutScreenState extends State<AboutScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 17,
-                      ),
+
                       SafeArea(
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(5, 30, 5, 20),

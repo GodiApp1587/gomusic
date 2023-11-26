@@ -6,6 +6,7 @@ class AssetsRes {
   static const String PLUGIN_NAME = 'blackhole';
   static const String PLUGIN_VERSION = '1.15.9+40';
   static const String BACK = 'assets/back.png';
+  static const String BLACK = 'assets/black.png';
   static const String DRAWER = 'assets/drawer.png';
   static const String FONDO = 'assets/fondo.png';
   static const String FONDO_AP_SETTINGS = 'assets/fondo_ap_settings.png';
@@ -13,6 +14,7 @@ class AssetsRes {
   static const String FONDO_THEME = 'assets/fondo_theme.png';
   static const String GOOGLE = 'assets/google.png';
   static const String INICIO = 'assets/inicio.png';
+  static const String LANDING = 'assets/landing.png';
   static const String MUSIC = 'assets/music.png';
   static const String PLAY_BLACK = 'assets/play_black.png';
   static const String PLAY_WHITE = 'assets/play_white.png';

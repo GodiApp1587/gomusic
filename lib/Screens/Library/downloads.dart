@@ -316,7 +316,13 @@ class _DownloadsState extends State<Downloads>
 
   @override
   Widget build(BuildContext context) {
-    return GradientContainer(
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/fondo_app.png'), // Ruta de tu imagen
+          fit: BoxFit.cover, // Ajusta la imagen para cubrir el contenedor
+        ),
+      ),
       child: DefaultTabController(
         length: 4,
         child: Scaffold(

@@ -287,7 +287,13 @@ class _DownloadedSongsState extends State<DownloadedSongs>
 
   @override
   Widget build(BuildContext context) {
-    return GradientContainer(
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/fondo_app.png'), // Ruta de tu imagen
+          fit: BoxFit.cover, // Ajusta la imagen para cubrir el contenedor
+        ),
+      ),
       child: DefaultTabController(
         length: widget.showPlaylists ? 6 : 5,
         child: Scaffold(

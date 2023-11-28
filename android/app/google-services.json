@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "995236190828",
+    "project_id": "gomusic-dddaf",
+    "storage_bucket": "gomusic-dddaf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995236190828:android:a0c0502f53fe4680139649",
+        "android_client_info": {
+          "package_name": "com.godimexico.gomusic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995236190828-skkkfb0m4vaqgemmqkqtvsfbbf1qdvv7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhGuWPNwwg3a2qiJwID3fNoJsmghymA8c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995236190828-skkkfb0m4vaqgemmqkqtvsfbbf1qdvv7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

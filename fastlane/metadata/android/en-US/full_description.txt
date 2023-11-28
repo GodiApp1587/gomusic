@@ -18,5 +18,5 @@ Features:
 - Auto Update Check
 - Cache support
 - No Subscription
-- No Ads
+- ads
 More to come...

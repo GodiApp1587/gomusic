@@ -22,12 +22,25 @@ class _BackupAndRestorePageState extends State<BackupAndRestorePage> {
   final MyTheme currentTheme = GetIt.I<MyTheme>();
   String autoBackPath = Hive.box('settings').get(
     'autoBackPath',
-    defaultValue: '/storage/emulated/0/BlackHole/Backups',
+    defaultValue: '/storage/emulated/0/GoMusic/Backups',
   ) as String;
 
   @override
   Widget build(BuildContext context) {
-    return GradientContainer(
+    return Container(
+      decoration: BoxDecoration(
+        image: Theme.of(context).brightness == Brightness.dark
+            ? const DecorationImage(
+          image: AssetImage("assets/fondo_app.png"),
+          fit: BoxFit.cover,
+        ) // Imagen de fondo para tema oscuro
+            : Theme.of(context).brightness == Brightness.light
+            ? const DecorationImage(
+          image: AssetImage("assets/fondo_theme.png"),
+          fit: BoxFit.cover,
+        ) // Imagen de fondo para tema oscuro
+            : null, // Color sólido para tema claro
+      ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(

@@ -207,7 +207,7 @@ class _HomePageState extends State<HomePage> {
         ) as String;
         if (autoBackPath == '') {
           ExtStorageProvider.getExtStorage(
-            dirName: 'BlackHole/Backups',
+            dirName: 'GoMusic/Backups',
             writeAccess: true,
           ).then((value) {
             Hive.box('settings').put('autoBackPath', value);
@@ -233,7 +233,7 @@ class _HomePageState extends State<HomePage> {
               if (value.contains('No such file or directory'))
                 {
                   ExtStorageProvider.getExtStorage(
-                    dirName: 'BlackHole/Backups',
+                    dirName: 'GoMusic/Backups',
                     writeAccess: true,
                   ).then(
                     (value) {
@@ -277,7 +277,20 @@ class _HomePageState extends State<HomePage> {
     final double screenWidth = MediaQuery.sizeOf(context).width;
     final bool rotated = MediaQuery.sizeOf(context).height < screenWidth;
     final miniplayer = MiniPlayer();
-    return GradientContainer(
+    return Container(
+      decoration: BoxDecoration(
+        image: Theme.of(context).brightness == Brightness.dark
+            ? const DecorationImage(
+          image: AssetImage("assets/fondo_app.png"),
+          fit: BoxFit.cover,
+        ) // Imagen de fondo para tema oscuro
+            : Theme.of(context).brightness == Brightness.light
+            ? const DecorationImage(
+          image: AssetImage("assets/fondo_theme.png"),
+          fit: BoxFit.cover,
+        ) // Imagen de fondo para tema oscuro
+            : null, // Color sólido para tema claro
+      ),
       child: Scaffold(
         appBar: AppBar(
           toolbarHeight: 0,
@@ -532,8 +545,8 @@ class _HomePageState extends State<HomePage> {
                     minWidth: 70.0,
                     groupAlignment: 0.0,
                     backgroundColor:
-                        // Colors.transparent,
-                       Theme.of(context).cardColor,
+                         Colors.transparent,
+                   //    Theme.of(context).cardColor,
                     selectedIndex: indexValue,
                     onDestinationSelected: (int index) {
                       onItemTapped(index);
@@ -633,20 +646,14 @@ class _HomePageState extends State<HomePage> {
                           int indexValue,
                           Widget? child,
                         ) {
-                          return AnimatedContainer(
-                            duration: const Duration(milliseconds: 100),
-                            height: 60,
-                            child: CustomBottomNavBar(
-                              currentIndex: indexValue,
-                              backgroundColor: Theme.of(context).brightness ==
-                                      Brightness.dark
-                                  ? Colors.black.withOpacity(0.9)
-                                  : Colors.white.withOpacity(0.9),
-                              onTap: (index) {
-                                onItemTapped(index);
-                              },
-                              items: _navBarItems(context),
-                            ),
+                          return CustomBottomNavBar(
+                            currentIndex: indexValue,
+
+
+                            onTap: (index) {
+                              onItemTapped(index);
+                            },
+                            items: _navBarItems(context),
                           );
                         },
                       ),

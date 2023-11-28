@@ -27,6 +27,7 @@ import 'package:blackhole/constants/countrycodes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
+import 'package:glassmorphism_widgets/glassmorphism_widgets.dart';
 import 'package:hive/hive.dart';
 import 'package:sizer/sizer.dart';
 
@@ -67,7 +68,20 @@ class _PrefScreenState extends State<PrefScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GradientContainer(
+    return Container(
+      decoration: BoxDecoration(
+        image: Theme.of(context).brightness == Brightness.dark
+            ? const DecorationImage(
+          image: AssetImage("assets/fondo_app.png"),
+          fit: BoxFit.cover,
+        ) // Imagen de fondo para tema oscuro
+            : Theme.of(context).brightness == Brightness.light
+            ? const DecorationImage(
+          image: AssetImage("assets/fondo_theme.png"),
+          fit: BoxFit.cover,
+        ) // Imagen de fondo para tema oscuro
+            : null, // Color sólido para tema claro
+      ),
       child: Scaffold(
         body: SafeArea(
           child: Stack(
@@ -135,8 +149,8 @@ class _PrefScreenState extends State<PrefScreen> {
                                   text:
                                       '${AppLocalizations.of(context)!.welcome}\n',
                                   style: TextStyle(
-                                    fontSize: 46.sp,
-                                    height: 1.0,
+                                    fontSize: 35.sp,
+                                    height: 0.999,
                                     fontWeight: FontWeight.bold,
                                     color:
                                         Theme.of(context).colorScheme.secondary,
@@ -147,7 +161,7 @@ class _PrefScreenState extends State<PrefScreen> {
                                           AppLocalizations.of(context)!.aboard,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 52.sp,
+                                        fontSize: 40.sp,
                                         color: Colors.white,
                                       ),
                                     ),
@@ -155,7 +169,7 @@ class _PrefScreenState extends State<PrefScreen> {
                                       text: '!\n',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 54.sp,
+                                        fontSize: 50.sp,
                                         color: Theme.of(context)
                                             .colorScheme
                                             .secondary,
@@ -557,30 +571,17 @@ class _PrefScreenState extends State<PrefScreen> {
                                         '/',
                                       );
                                     },
-                                    child: Container(
+                                    child: GlassContainer(
                                       margin: const EdgeInsets.symmetric(
                                         vertical: 10.0,
                                       ),
                                       height: 55.0,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                        boxShadow: const [
-                                          BoxShadow(
-                                            color: Colors.black26,
-                                            blurRadius: 5.0,
-                                            offset: Offset(0.0, 3.0),
-                                          ),
-                                        ],
-                                      ),
+
                                       child: Center(
                                         child: Text(
                                           AppLocalizations.of(context)!.finish,
                                           style: const TextStyle(
-                                            color: Colors.black,
+                                            color: Colors.white,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 20.0,
                                           ),

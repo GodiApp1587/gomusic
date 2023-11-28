@@ -43,11 +43,18 @@ class _AboutPageState extends State<AboutPage> {
   Widget build(BuildContext context) {
     return GradientContainer(
       child: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/black.png'),
-            fit: BoxFit.cover, // Puedes ajustar el ajuste de la imagen según tus necesidades
-          ),
+        decoration: BoxDecoration(
+          image: Theme.of(context).brightness == Brightness.dark
+              ? const DecorationImage(
+            image: AssetImage("assets/splash.png"),
+            fit: BoxFit.cover,
+          ) // Imagen de fondo para tema oscuro
+              : Theme.of(context).brightness == Brightness.light
+              ? const DecorationImage(
+            image: AssetImage("assets/fondo_theme.png"),
+            fit: BoxFit.cover,
+          ) // Imagen de fondo para tema oscuro
+              : null, // Color sólido para tema claro
         ),
 
         child: Scaffold(

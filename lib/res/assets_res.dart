@@ -7,6 +7,7 @@ class AssetsRes {
   static const String PLUGIN_VERSION = '1.15.9+40';
   static const String BACK = 'assets/back.png';
   static const String BLACK = 'assets/black.png';
+  static const String BOTTOM = 'assets/bottom.png';
   static const String DRAWER = 'assets/drawer.png';
   static const String FONDO = 'assets/fondo.png';
   static const String FONDO_AP_SETTINGS = 'assets/fondo_ap_settings.png';

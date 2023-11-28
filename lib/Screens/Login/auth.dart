@@ -229,8 +229,8 @@ const SizedBox(
                                           color: Colors.lightGreenAccent,
                                           boxShadow: const [
                                             BoxShadow(
-                                              color: Colors.yellowAccent,
-                                              blurRadius: 8.0,
+                                              color: Colors.black45,
+                                              blurRadius: 2.0,
                                               offset: Offset(0.3, 0.6),
                                             ),
                                           ],

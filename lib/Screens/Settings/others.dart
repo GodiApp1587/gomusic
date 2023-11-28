@@ -36,11 +36,18 @@ class _OthersPageState extends State<OthersPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/fondo_app.png'), // Ruta de tu imagen
-          fit: BoxFit.cover, // Ajusta la imagen para cubrir el contenedor
-        ),
+      decoration: BoxDecoration(
+        image: Theme.of(context).brightness == Brightness.dark
+            ? const DecorationImage(
+          image: AssetImage("assets/fondo_app.png"),
+          fit: BoxFit.cover,
+        ) // Imagen de fondo para tema oscuro
+            : Theme.of(context).brightness == Brightness.light
+            ? const DecorationImage(
+          image: AssetImage("assets/fondo_theme.png"),
+          fit: BoxFit.cover,
+        ) // Imagen de fondo para tema oscuro
+            : null, // Color sólido para tema claro
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,

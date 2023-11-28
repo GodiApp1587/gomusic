@@ -60,185 +60,200 @@ class _PlayerGradientSelectionState extends State<PlayerGradientSelection> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          AppLocalizations.of(
-            context,
-          )!
-              .playerScreenBackground,
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        image: Theme.of(context).brightness == Brightness.dark
+            ? const DecorationImage(
+          image: AssetImage("assets/fondo_app.png"),
+          fit: BoxFit.cover,
+        ) // Imagen de fondo para tema oscuro
+            : Theme.of(context).brightness == Brightness.light
+            ? const DecorationImage(
+          image: AssetImage("assets/fondo_theme.png"),
+          fit: BoxFit.cover,
+        ) // Imagen de fondo para tema oscuro
+            : null, // Color sólido para tema claro
       ),
-      body: SafeArea(
-        child: GridView.count(
-          shrinkWrap: true,
-          crossAxisCount: MediaQuery.sizeOf(context).width >
-                  MediaQuery.sizeOf(context).height
-              ? 6
-              : 3,
-          physics: const BouncingScrollPhysics(),
-          childAspectRatio: 0.6,
-          children: types
-              .map(
-                (type) => GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      gradientType = type;
-                      Hive.box('settings').put('gradientType', type);
-                    });
-                  },
-                  child: SizedBox(
-                    child: Stack(
-                      children: [
-                        Card(
-                          elevation: 5,
-                          color: Colors.transparent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),
-                            side: BorderSide(
-                              color: Theme.of(context).colorScheme.primary,
-                              width: gradientType == type ? 2.0 : 0.5,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            AppLocalizations.of(
+              context,
+            )!
+                .playerScreenBackground,
+          ),
+        ),
+        body: SafeArea(
+          child: GridView.count(
+            shrinkWrap: true,
+            crossAxisCount: MediaQuery.sizeOf(context).width >
+                    MediaQuery.sizeOf(context).height
+                ? 6
+                : 3,
+            physics: const BouncingScrollPhysics(),
+            childAspectRatio: 0.6,
+            children: types
+                .map(
+                  (type) => GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        gradientType = type;
+                        Hive.box('settings').put('gradientType', type);
+                      });
+                    },
+                    child: SizedBox(
+                      child: Stack(
+                        children: [
+                          Card(
+                            elevation: 5,
+                            color: Colors.transparent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              side: BorderSide(
+                                color: Theme.of(context).colorScheme.primary,
+                                width: gradientType == type ? 2.0 : 0.5,
+                              ),
                             ),
-                          ),
-                          clipBehavior: Clip.antiAlias,
-                          // ignore: use_decorated_box
-                          child: Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: type == 'simple'
-                                    ? Alignment.topLeft
-                                    : Alignment.topCenter,
-                                end: type == 'simple'
-                                    ? Alignment.bottomRight
-                                    : (type == 'halfLight' ||
-                                            type == 'halfDark')
-                                        ? Alignment.center
-                                        : Alignment.bottomCenter,
-                                colors: type == 'simple'
-                                    ? Theme.of(context).brightness ==
-                                            Brightness.dark
-                                        ? currentTheme.getBackGradient()
-                                        : [
-                                            const Color(0xfff5f9ff),
-                                            Colors.white,
-                                          ]
-                                    : Theme.of(context).brightness ==
-                                            Brightness.dark
-                                        ? [
-                                            if (type == 'halfDark' ||
-                                                type == 'fullDark')
-                                              gradientColor[1] ??
-                                                  Colors.grey[900]!
-                                            else
+                            clipBehavior: Clip.antiAlias,
+                            // ignore: use_decorated_box
+                            child: Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: type == 'simple'
+                                      ? Alignment.topLeft
+                                      : Alignment.topCenter,
+                                  end: type == 'simple'
+                                      ? Alignment.bottomRight
+                                      : (type == 'halfLight' ||
+                                              type == 'halfDark')
+                                          ? Alignment.center
+                                          : Alignment.bottomCenter,
+                                  colors: type == 'simple'
+                                      ? Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? currentTheme.getBackGradient()
+                                          : [
+                                              const Color(0xfff5f9ff),
+                                              Colors.white,
+                                            ]
+                                      : Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? [
+                                              if (type == 'halfDark' ||
+                                                  type == 'fullDark')
+                                                gradientColor[1] ??
+                                                    Colors.grey[900]!
+                                              else
+                                                gradientColor[0] ??
+                                                    Colors.grey[900]!,
+                                              if (type == 'fullMix')
+                                                gradientColor[1] ?? Colors.black
+                                              else
+                                                Colors.black,
+                                            ]
+                                          : [
                                               gradientColor[0] ??
-                                                  Colors.grey[900]!,
-                                            if (type == 'fullMix')
-                                              gradientColor[1] ?? Colors.black
-                                            else
-                                              Colors.black,
-                                          ]
-                                        : [
-                                            gradientColor[0] ??
-                                                const Color(0xfff5f9ff),
-                                            Colors.white,
-                                          ],
+                                                  const Color(0xfff5f9ff),
+                                              Colors.white,
+                                            ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Column(
-                          children: [
-                            const Spacer(
-                              flex: 3,
-                            ),
-                            Center(
-                              child: Card(
-                                elevation: 5,
-                                margin: const EdgeInsets.symmetric(
-                                  horizontal: 15.0,
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                                clipBehavior: Clip.antiAlias,
-                                child: FittedBox(
-                                  child: SizedBox.square(
-                                    dimension:
-                                        MediaQuery.sizeOf(context).width / 5,
+                          Column(
+                            children: [
+                              const Spacer(
+                                flex: 3,
+                              ),
+                              Center(
+                                child: Card(
+                                  elevation: 5,
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: 15.0,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  clipBehavior: Clip.antiAlias,
+                                  child: FittedBox(
+                                    child: SizedBox.square(
+                                      dimension:
+                                          MediaQuery.sizeOf(context).width / 5,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            const Spacer(
-                              flex: 3,
-                            ),
-                            Center(
-                              child: Card(
-                                elevation: 5,
-                                margin: const EdgeInsets.symmetric(
-                                  horizontal: 20.0,
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                                clipBehavior: Clip.antiAlias,
-                                child: FittedBox(
-                                  child: SizedBox(
-                                    width: MediaQuery.sizeOf(context).width / 5,
-                                    height:
-                                        MediaQuery.sizeOf(context).width / 25,
+                              const Spacer(
+                                flex: 3,
+                              ),
+                              Center(
+                                child: Card(
+                                  elevation: 5,
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: 20.0,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  clipBehavior: Clip.antiAlias,
+                                  child: FittedBox(
+                                    child: SizedBox(
+                                      width: MediaQuery.sizeOf(context).width / 5,
+                                      height:
+                                          MediaQuery.sizeOf(context).width / 25,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            const Spacer(),
-                            Center(
-                              child: Card(
-                                elevation: 5,
-                                margin: const EdgeInsets.symmetric(
-                                  horizontal: 20.0,
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                                clipBehavior: Clip.antiAlias,
-                                child: FittedBox(
-                                  child: SizedBox(
-                                    width: MediaQuery.sizeOf(context).width / 5,
-                                    height:
-                                        MediaQuery.sizeOf(context).width / 25,
+                              const Spacer(),
+                              Center(
+                                child: Card(
+                                  elevation: 5,
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: 20.0,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  clipBehavior: Clip.antiAlias,
+                                  child: FittedBox(
+                                    child: SizedBox(
+                                      width: MediaQuery.sizeOf(context).width / 5,
+                                      height:
+                                          MediaQuery.sizeOf(context).width / 25,
+                                    ),
                                   ),
                                 ),
                               ),
+                              const Spacer(
+                                flex: 3,
+                              ),
+                            ],
+                          ),
+                          if (gradientType == type)
+                            const Center(child: Icon(Icons.check_rounded)),
+                          if (recommended.contains(type))
+                            const Align(
+                              alignment: Alignment.topRight,
+                              child: Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Icon(Icons.star_rounded),
+                              ),
                             ),
-                            const Spacer(
-                              flex: 3,
-                            ),
-                          ],
-                        ),
-                        if (gradientType == type)
-                          const Center(child: Icon(Icons.check_rounded)),
-                        if (recommended.contains(type))
-                          const Align(
-                            alignment: Alignment.topRight,
+                          Align(
+                            alignment: Alignment.bottomCenter,
                             child: Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.star_rounded),
+                              padding: const EdgeInsets.symmetric(vertical: 10.0),
+                              child: Text(typeMapping[type]!),
                             ),
                           ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10.0),
-                            child: Text(typeMapping[type]!),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              )
-              .toList(),
+                )
+                .toList(),
+          ),
         ),
       ),
     );

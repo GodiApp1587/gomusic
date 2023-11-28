@@ -80,7 +80,7 @@ class ExtStorageProvider {
         }
       } else if (Platform.isIOS || Platform.isMacOS) {
         directory = await getApplicationDocumentsDirectory();
-        final finalDirName = dirName.replaceAll('BlackHole/', '');
+        final finalDirName = dirName.replaceAll('GoMusic/', '');
         return '${directory.path}/$finalDirName';
       } else {
         directory = await getDownloadsDirectory();

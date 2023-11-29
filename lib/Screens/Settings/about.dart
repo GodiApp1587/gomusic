@@ -272,60 +272,60 @@ class _AboutPageState extends State<AboutPage> {
                             ),
                           ),
                         ),
-                        Center(
-                          child: GlassContainer(
-                            height: 57,
-                            width: 340,
-                            gradient: LinearGradient(
-                              colors: [Colors.black87.withOpacity(0.20), Colors.white.withOpacity(0.10)],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                            borderGradient: LinearGradient(
-                              colors: [Colors.white.withOpacity(0.60), Colors.white.withOpacity(0.10), Colors.lightGreenAccent.withOpacity(0.05), Colors.lightGreenAccent.withOpacity(0.6)],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              stops: [0.0, 0.39, 0.40, 1.0],
-                            ),
-                            blur: 18.0,
-                            borderRadius: BorderRadius.circular(15.0),
-                            borderWidth: 1.0,
+                      //  Center(
+                        //  child: GlassContainer(
+                          //  height: 57,
+                           // width: 340,
+                       //     gradient: LinearGradient(
+                        //      colors: [Colors.black87.withOpacity(0.20), Colors.white.withOpacity(0.10)],
+                          //    begin: Alignment.topLeft,
+                           //   end: Alignment.bottomRight,
+                        //    ),
+                          //7  borderGradient: LinearGradient(
+                           //   colors: [Colors.white.withOpacity(0.60), Colors.white.withOpacity(0.10), Colors.lightGreenAccent.withOpacity(0.05), Colors.lightGreenAccent.withOpacity(0.6)],
+                           //   begin: Alignment.topLeft,
+                           //   end: Alignment.bottomRight,
+                          //    stops: [0.0, 0.39, 0.40, 1.0],
+                          //  ),
+                          //  blur: 18.0,
+                           // borderRadius: BorderRadius.circular(15.0),
+                         //   borderWidth: 1.0,
 
-                            elevation: 2.0,
+                           // elevation: 2.0,
 
-                            shadowColor: Colors.black.withOpacity(0.20),
-                            alignment: Alignment.center,
+                          //  shadowColor: Colors.black.withOpacity(0.20),
+                          //  alignment: Alignment.center,
 
-                            margin: EdgeInsets.all(3.0),
-                            padding: EdgeInsets.all(2.0),
+                         //   margin: EdgeInsets.all(3.0),
+                           // padding: EdgeInsets.all(2.0),
 
-                            child: Center(
-                              child: ListTile(
-                                title: Text(
-                                  AppLocalizations.of(
-                                    context,
-                                  )!
-                                      .likedWork,
-                                ),
-                                subtitle: Text(
-                                  AppLocalizations.of(
-                                    context,
-                                  )!
-                                      .buyCoffee,
-                                ),
-                                dense: true,
-                                onTap: () {
-                                  launchUrl(
-                                    Uri.parse(
-                                      'https://gomusic.grwebsite.com/',
-                                    ),
-                                    mode: LaunchMode.externalApplication,
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
+                          //  child: Center(
+                            //  child: ListTile(
+                              //  title: Text(
+                                //  AppLocalizations.of(
+                                  //  context,
+                                //  )!
+                                  //    .likedWork,
+                              //  ),
+                              // subtitle: Text(
+                                //  AppLocalizations.of(
+                                  //  context,
+                                 // )!
+                                   //   .buyCoffee,
+                               // ),
+                          //      dense: true,
+                            //    onTap: () {
+                              //    launchUrl(
+                                //    Uri.parse(
+                                  //    'https://gomusic.grwebsite.com/',
+                                  //  ),
+                                   // mode: LaunchMode.externalApplication,
+                              //    );
+                            //    },
+                          //    ),
+                          //  ),
+                        //  ),
+                      //  ),
 
 
 

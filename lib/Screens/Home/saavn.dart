@@ -39,6 +39,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import '../../CustomWidgets/admob_banner.dart';
+
 bool fetched = false;
 List preferredLanguage = Hive.box('settings')
     .get('preferredLanguage', defaultValue: ['English']) as List;
@@ -535,6 +537,7 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                             physics: const BouncingScrollPhysics(),
                             scrollDirection: Axis.horizontal,
                             padding: const EdgeInsets.symmetric(horizontal: 10),
+
                             itemCount: data['modules'][lists[idx]]?['title']
                                         ?.toString() ==
                                     'Radio Stations'
@@ -677,6 +680,9 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                                     }
                                   }
                                 },
+
+
+
                                 child: SizedBox(
                                   width: boxSize - 30,
                                   child: HoverBox(
@@ -717,11 +723,15 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                                             10.0,
                                           ),
                                         ),
+
                                         clipBehavior: Clip.antiAlias,
+
                                         child: Column(
+
                                           children: [
                                             Stack(
                                               children: [
+
                                                 SizedBox.square(
                                                   dimension: isHover
                                                       ? boxSize - 25
@@ -770,6 +780,7 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                                                         ),
                                                       ),
                                                     ),
+
                                                   ),
                                                 if (item['type'] ==
                                                         'radio_station' &&
@@ -862,6 +873,7 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                                               ),
                                               child: Column(
                                                 children: [
+                                                  AdMobWidget(adUnitId: 'ca-app-pub-2361280395457206/2787577102'),
                                                   Text(
                                                     item['title']
                                                             ?.toString()

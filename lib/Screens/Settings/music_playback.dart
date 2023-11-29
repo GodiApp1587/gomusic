@@ -24,8 +24,9 @@ class _MusicPlaybackPageState extends State<MusicPlaybackPage> {
   String ytQuality =
       Hive.box('settings').get('ytQuality', defaultValue: 'Low') as String;
   String region =
-      Hive.box('settings').get('region', defaultValue: 'Global') as String;
+      Hive.box('settings').get('region', defaultValue: 'Mexico') as String;
   List<String> languages = [
+    'Spanish',
     'English',
     'Hindi',
     'Punjabi',
@@ -485,9 +486,9 @@ class _MusicPlaybackPageState extends State<MusicPlaybackPage> {
 class SpotifyCountry {
   Future<String> changeCountry({required BuildContext context}) async {
     String region =
-        Hive.box('settings').get('region', defaultValue: 'India') as String;
+        Hive.box('settings').get('region', defaultValue: 'Mexico') as String;
     if (!CountryCodes.localChartCodes.containsKey(region)) {
-      region = 'India';
+      region = 'Mexico';
     }
 
     await showModalBottomSheet(

@@ -102,31 +102,47 @@ class _MiniPlayerState extends State<MiniPlayer> {
                 },
                 child: Card(
                   margin: const EdgeInsets.symmetric(
-                    horizontal: 3.0,
-                    vertical: 3.0,
+                    horizontal: 2.0,
+                    vertical: 2.0,
+
                   ),
-                  elevation: 3,
-                  child: SizedBox(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        miniplayerTile(
-                          context: context,
-                          preferredMiniButtons: preferredMiniButtons,
-                          useDense: useDense,
-                          title: mediaItem?.title ?? '',
-                          subtitle: mediaItem?.artist ?? '',
-                          imagePath: (isLocal
-                                  ? mediaItem?.artUri?.toFilePath()
-                                  : mediaItem?.artUri?.toString()) ??
-                              '',
-                          isLocalImage: isLocal,
-                          isDummy: mediaItem == null,
-                        ),
-                        positionSlider(
-                          mediaItem?.duration?.inSeconds.toDouble(),
+                  elevation: 12,
+             //    color: Colors.blue,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.0), // Ajusta el radio de los bordes según sea necesario
+                      color: Colors.white.withOpacity(0.3), // Color de fondo con opacidad para el efecto de vidrio
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black87.withOpacity(0.5), // Sombra difusa en el contorno del contenedor
+                          spreadRadius: 5,
+                          blurRadius: 15,
+                          offset: Offset(0, 3),
                         ),
                       ],
+                    ),
+                    child: SizedBox(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          miniplayerTile(
+                            context: context,
+                            preferredMiniButtons: preferredMiniButtons,
+                            useDense: useDense,
+                            title: mediaItem?.title ?? '',
+                            subtitle: mediaItem?.artist ?? '',
+                            imagePath: (isLocal
+                                    ? mediaItem?.artUri?.toFilePath()
+                                    : mediaItem?.artUri?.toString()) ??
+                                '',
+                            isLocalImage: isLocal,
+                            isDummy: mediaItem == null,
+                          ),
+                          positionSlider(
+                            mediaItem?.duration?.inSeconds.toDouble(),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -157,12 +173,12 @@ class _MiniPlayerState extends State<MiniPlayer> {
             },
       title: Text(
         isDummy ? 'Go' : title,
-        maxLines: 1,
+        maxLines: 2,
         overflow: TextOverflow.ellipsis,
       ),
       subtitle: Text(
         isDummy ? 'Music' : subtitle,
-        maxLines: 1,
+        maxLines: 3,
         overflow: TextOverflow.ellipsis,
       ),
       leading: Hero(

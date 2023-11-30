@@ -144,7 +144,7 @@ class _TopChartsState extends State<TopCharts>
                   valueListenable: Hive.box('settings').listenable(),
                   builder: (BuildContext context, Box box, Widget? widget) {
                     return TopPage(
-                      type: box.get('region', defaultValue: 'India').toString(),
+                      type: box.get('region', defaultValue: 'Mexico').toString(),
                     );
                   },
                 ),
@@ -163,7 +163,7 @@ Future<List> getChartDetails(String accessToken, String type) async {
   final String globalPlaylistId = CountryCodes.localChartCodes['Global']!;
   final String localPlaylistId = CountryCodes.localChartCodes.containsKey(type)
       ? CountryCodes.localChartCodes[type]!
-      : CountryCodes.localChartCodes['India']!;
+      : CountryCodes.localChartCodes['Mexico']!;
   final String playlistId =
       type == 'Global' ? globalPlaylistId : localPlaylistId;
   final List data = [];

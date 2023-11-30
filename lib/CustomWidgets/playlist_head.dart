@@ -78,8 +78,8 @@ class PlaylistHead extends StatelessWidget {
               );
             },
             tooltip: AppLocalizations.of(context)!.shuffle,
-            icon: const Icon(Icons.play_arrow_rounded),
-            iconSize: 30.0,
+            icon: Center(child: const Icon(Icons.play_arrow_rounded)),
+            iconSize: 33.0,
           ),
         ],
       ),

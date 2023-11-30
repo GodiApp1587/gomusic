@@ -24,6 +24,7 @@ import 'dart:ui' as ui;
 
 import 'package:audio_service/audio_service.dart';
 import 'package:blackhole/CustomWidgets/add_playlist.dart';
+import 'package:blackhole/CustomWidgets/admob_banner.dart';
 import 'package:blackhole/CustomWidgets/animated_text.dart';
 import 'package:blackhole/CustomWidgets/copy_clipboard.dart';
 import 'package:blackhole/CustomWidgets/download_button.dart';
@@ -66,7 +67,7 @@ class PlayScreen extends StatefulWidget {
 
 class _PlayScreenState extends State<PlayScreen> {
   final String gradientType = Hive.box('settings')
-      .get('gradientType', defaultValue: 'halfDark')
+      .get('gradientType', defaultValue: 'fullMix')
       .toString();
   final bool getLyricsOnline =
       Hive.box('settings').get('getLyricsOnline', defaultValue: true) as bool;
@@ -214,6 +215,7 @@ class _PlayScreenState extends State<PlayScreen> {
       onDismissed: (direction) {
         Navigator.pop(context);
       },
+
       child: StreamBuilder<MediaItem?>(
         stream: audioHandler.mediaItem,
         builder: (context, snapshot) {
@@ -311,6 +313,7 @@ class _PlayScreenState extends State<PlayScreen> {
                                   'title': mediaItem.album,
                                   'image': mediaItem.artUri,
                                 },
+
                               ),
                             ),
                           );
@@ -350,6 +353,7 @@ class _PlayScreenState extends State<PlayScreen> {
                                 ),
                                 contentPadding: const EdgeInsets.all(10.0),
                                 children: [
+
                                   ListTile(
                                     title: Text(
                                       AppLocalizations.of(context)!.sleepDur,
@@ -838,26 +842,26 @@ class ControlButtons extends StatelessWidget {
                             child: Center(
                               child: playing
                                   ? FloatingActionButton(
-                                      elevation: 10,
+                                      elevation: 13,
                                       tooltip:
                                           AppLocalizations.of(context)!.pause,
                                       backgroundColor: Colors.white,
                                       onPressed: audioHandler.pause,
                                       child: const Icon(
                                         Icons.pause_rounded,
-                                        size: 40.0,
+                                        size: 50.0,
                                         color: Colors.black,
                                       ),
                                     )
                                   : FloatingActionButton(
-                                      elevation: 10,
+                                      elevation: 13,
                                       tooltip:
                                           AppLocalizations.of(context)!.play,
                                       backgroundColor: Colors.white,
                                       onPressed: audioHandler.play,
                                       child: const Icon(
                                         Icons.play_arrow_rounded,
-                                        size: 40.0,
+                                        size: 50.0,
                                         color: Colors.black,
                                       ),
                                     ),
@@ -2222,46 +2226,34 @@ class NameNControls extends StatelessWidget {
             // : Colors.white,
             controller: panelController,
             panelBuilder: (ScrollController scrollController) {
-              return ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(15.0),
-                  topRight: Radius.circular(15.0),
-                ),
-                child: BackdropFilter(
-                  filter: ui.ImageFilter.blur(
-                    sigmaX: 8.0,
-                    sigmaY: 8.0,
-                  ),
-                  child: ShaderMask(
-                    shaderCallback: (rect) {
-                      return const LinearGradient(
-                        end: Alignment.topCenter,
-                        begin: Alignment.center,
-                        colors: [
-                          Colors.black,
-                          Colors.black,
-                          Colors.black,
-                          Colors.transparent,
-                          Colors.transparent,
-                        ],
-                      ).createShader(
-                        Rect.fromLTRB(
-                          0,
-                          0,
-                          rect.width,
-                          rect.height,
-                        ),
-                      );
-                    },
-                    blendMode: BlendMode.dstIn,
-                    child: NowPlayingStream(
-                      head: true,
-                      headHeight: nowplayingBoxHeight,
-                      audioHandler: audioHandler,
-                      scrollController: scrollController,
-                      panelController: panelController,
+              return ShaderMask(
+                shaderCallback: (rect) {
+                  return const LinearGradient(
+                    end: Alignment.topCenter,
+                    begin: Alignment.center,
+                    colors: [
+                      Colors.black,
+                      Colors.black,
+                      Colors.black,
+                      Colors.transparent,
+                      Colors.transparent,
+                    ],
+                  ).createShader(
+                    Rect.fromLTRB(
+                      0,
+                      0,
+                      rect.width,
+                      rect.height,
                     ),
-                  ),
+                  );
+                },
+                blendMode: BlendMode.dstIn,
+                child: NowPlayingStream(
+                  head: true,
+                  headHeight: nowplayingBoxHeight,
+                  audioHandler: audioHandler,
+                  scrollController: scrollController,
+                  panelController: panelController,
                 ),
               );
             },

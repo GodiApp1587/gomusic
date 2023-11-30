@@ -228,15 +228,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                 borderRadius: BorderRadius.circular(
                                   10.0,
                                 ),
-                                color: Theme.of(context).cardColor,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Colors.black26,
-                                    blurRadius: 5.0,
-                                    offset: Offset(1.5, 1.5),
+                                color: Colors.white.withOpacity(0.3),
+                             //   boxShadow: const [
+                               //   BoxShadow(
+                                 //   color: Colors.black26,
+                                 //   blurRadius: 5.0,
+                                 //   offset: Offset(1.5, 1.5),
                                     // shadow direction: bottom right
-                                  ),
-                                ],
+                                //  ),
+                              //  ],
                               ),
                               child: Row(
                                 children: [

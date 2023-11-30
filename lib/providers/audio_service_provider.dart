@@ -38,7 +38,7 @@ class AudioHandlerHelper {
       builder: () => AudioPlayerHandlerImpl(),
       config: AudioServiceConfig(
         androidNotificationChannelId: 'com.shadow.blackhole.channel.audio',
-        androidNotificationChannelName: 'BlackHole',
+        androidNotificationChannelName: 'GoMusic',
         androidNotificationIcon: 'drawable/ic_stat_music_note',
         androidShowNotificationBadge: true,
         androidStopForegroundOnPause: false,

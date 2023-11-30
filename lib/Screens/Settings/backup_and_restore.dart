@@ -324,10 +324,10 @@ class _BackupAndRestorePageState extends State<BackupAndRestorePage> {
                 ),
                 onPressed: () async {
                   autoBackPath = await ExtStorageProvider.getExtStorage(
-                        dirName: 'BlackHole/Backups',
+                        dirName: 'GoMusic/Backups',
                         writeAccess: true,
                       ) ??
-                      '/storage/emulated/0/BlackHole/Backups';
+                      '/storage/emulated/0/GoMusic/Backups';
                   Hive.box('settings').put('autoBackPath', autoBackPath);
                   setState(
                     () {},

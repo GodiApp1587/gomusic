@@ -46,22 +46,24 @@ class _AboutPageState extends State<AboutPage> {
         decoration: BoxDecoration(
           image: Theme.of(context).brightness == Brightness.dark
               ? const DecorationImage(
-            image: AssetImage("assets/splash.png"),
+            image: AssetImage("assets/back.png"),
             fit: BoxFit.cover,
           ) // Imagen de fondo para tema oscuro
               : Theme.of(context).brightness == Brightness.light
               ? const DecorationImage(
-            image: AssetImage("assets/fondo_theme.png"),
+            image: AssetImage("assets/fondo_like.png"),
             fit: BoxFit.cover,
           ) // Imagen de fondo para tema oscuro
               : null, // Color sólido para tema claro
         ),
 
         child: Scaffold(
-          backgroundColor: Colors.transparent,
+
           appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.transparent,
+            backgroundColor: Theme.of(context).brightness == Brightness.dark
+                ? const Color(0xFF10111E)
+                : const Color(0xFFFFFFFF),
+            elevation: 10,
             centerTitle: true,
             title: Text(
               AppLocalizations.of(
@@ -69,10 +71,11 @@ class _AboutPageState extends State<AboutPage> {
               )!
                   .about,
               textAlign: TextAlign.center,
+
               style: TextStyle(
                 color: Theme.of(context).iconTheme.color,
-                fontSize: 24,
-                shadows: [
+                fontSize: 21,
+                shadows: const [
                   Shadow(
                     blurRadius: 2.0,
                     color: Colors.black87,
@@ -81,303 +84,339 @@ class _AboutPageState extends State<AboutPage> {
                 ],
               ),
             ),
+
             iconTheme: IconThemeData(
               color: Theme.of(context).iconTheme.color,
             ),
           ),
-          body: CustomScrollView(
-            physics: const BouncingScrollPhysics(),
-            slivers: [
-              SliverList(
-                delegate: SliverChildListDelegate([
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(
-                      10.0,
-                      10.0,
-                      10.0,
-                      10.0,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                      Center(
-                        child: GlassContainer(
-                        height: 60,
-                        width: 340,
-                        gradient: LinearGradient(
-                          colors: [Colors.black87.withOpacity(0.20), Colors.white.withOpacity(0.10)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
+          body:Stack(
+            fit: StackFit.expand,
+
+            children: [Container(
+          decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/fondo_ap_settings.png'), // Ruta de tu imagen
+          fit: BoxFit.cover, // Ajusta la imagen para cubrir el contenedor
+        ),
+      ),
+    ),
+               CustomScrollView(
+                physics: const BouncingScrollPhysics(),
+                slivers: [
+                  SliverList(
+                    delegate: SliverChildListDelegate([
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(
+                          40.0,
+                          40.0,
+                          40.0,
+                          40.0,
                         ),
-                        borderGradient: LinearGradient(
-                          colors: [Colors.white.withOpacity(0.60), Colors.white.withOpacity(0.10), Colors.lightGreenAccent.withOpacity(0.05), Colors.lightGreenAccent.withOpacity(0.6)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          stops: [0.0, 0.39, 0.40, 1.0],
-                        ),
-                        blur: 18.0,
-                          borderRadius: BorderRadius.circular(16.0),
-                          borderWidth: 1.0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 20,),
+                          Center(
+                            child: GlassContainer(
+                            height: 80,
+                            width: 340,
+                            gradient: LinearGradient(
+                              colors: [Colors.black87.withOpacity(0.20), Colors.white.withOpacity(0.10)],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            borderGradient: LinearGradient(
+                              colors: [Colors.white.withOpacity(0.60), Colors.white.withOpacity(0.10), Colors.lightGreenAccent.withOpacity(0.05), Colors.lightGreenAccent.withOpacity(0.6)],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              stops: [0.0, 0.39, 0.40, 1.0],
+                            ),
+                            blur: 18.0,
+                              borderRadius: BorderRadius.circular(16.0),
+                              borderWidth: 1.0,
 
-                        elevation: 2.0,
+                            elevation: 2.0,
 
-                        shadowColor: Colors.black.withOpacity(0.20),
-                        alignment: Alignment.center,
+                            shadowColor: Colors.black.withOpacity(0.20),
+                            alignment: Alignment.center,
 
-                        margin: EdgeInsets.all(3.0),
-                        padding: EdgeInsets.all(2.0),
+                            margin: EdgeInsets.all(3.0),
+                            padding: EdgeInsets.all(2.0),
 
-                            child: Center(
-                              child: ListTile(
-                                title: Text(
-                                  AppLocalizations.of(
-                                    context,
-                                  )!
-                                      .version,
-                                ),
-                                subtitle: Text(
-                                  AppLocalizations.of(
-                                    context,
-                                  )!
-                                      .versionSub,
-                                ),
-                                onTap: () {
-                                  ShowSnackBar().showSnackBar(
-                                    context,
-                                    AppLocalizations.of(
-                                      context,
-                                    )!
-                                        .checkingUpdate,
-                                    noAction: true,
-                                  );
-
-                                  GitHub.getLatestVersion().then(
-                                    (String latestVersion) async {
-                                      if (compareVersion(
-                                        latestVersion,
-                                        appVersion!,
-                                      )) {
-                                        ShowSnackBar().showSnackBar(
+                                child: Center(
+                                  child: ListTile(
+                                    title: Text(
+                                      AppLocalizations.of(
+                                        context,
+                                      )!
+                                          .version,
+                                    ),
+                                    subtitle: Text(
+                                      AppLocalizations.of(
+                                        context,
+                                      )!
+                                          .versionSub,
+                                    ),
+                                    onTap: () {
+                                      ShowSnackBar().showSnackBar(
+                                        context,
+                                        AppLocalizations.of(
                                           context,
-                                          AppLocalizations.of(context)!.updateAvailable,
-                                          duration: const Duration(seconds: 15),
-                                          action: SnackBarAction(
-                                            textColor:
-                                                Theme.of(context).colorScheme.secondary,
-                                            label: AppLocalizations.of(context)!.update,
-                                            onPressed: () async {
-                                              String arch = '';
-                                              if (Platform.isAndroid) {
-                                                List? abis = await Hive.box('settings')
-                                                    .get('supportedAbis') as List?;
+                                        )!
+                                            .checkingUpdate,
+                                        noAction: true,
+                                      );
 
-                                                if (abis == null) {
-                                                  final DeviceInfoPlugin deviceInfo =
-                                                      DeviceInfoPlugin();
-                                                  final AndroidDeviceInfo
-                                                      androidDeviceInfo =
-                                                      await deviceInfo.androidInfo;
-                                                  abis =
-                                                      androidDeviceInfo.supportedAbis;
-                                                  await Hive.box('settings')
-                                                      .put('supportedAbis', abis);
-                                                }
-                                                if (abis.contains('arm64')) {
-                                                  arch = 'arm64';
-                                                } else if (abis.contains('armeabi')) {
-                                                  arch = 'armeabi';
-                                                }
-                                              }
-                                              Navigator.pop(context);
-                                              launchUrl(
-                                                Uri.parse(
-                                                  '',
-                                                ),
-                                                mode: LaunchMode.externalApplication,
-                                              );
-                                            },
-                                          ),
-                                        );
-                                      } else {
-                                        ShowSnackBar().showSnackBar(
-                                          context,
-                                          AppLocalizations.of(
-                                            context,
-                                          )!
-                                              .latest,
-                                        );
-                                      }
+                                      GitHub.getLatestVersion().then(
+                                        (String latestVersion) async {
+                                          if (compareVersion(
+                                            latestVersion,
+                                            appVersion!,
+                                          )) {
+                                            ShowSnackBar().showSnackBar(
+                                              context,
+                                              AppLocalizations.of(context)!.updateAvailable,
+                                              duration: const Duration(seconds: 15),
+                                              action: SnackBarAction(
+                                                textColor:
+                                                    Theme.of(context).colorScheme.secondary,
+                                                label: AppLocalizations.of(context)!.update,
+                                                onPressed: () async {
+                                                  String arch = '';
+                                                  if (Platform.isAndroid) {
+                                                    List? abis = await Hive.box('settings')
+                                                        .get('supportedAbis') as List?;
+
+                                                    if (abis == null) {
+                                                      final DeviceInfoPlugin deviceInfo =
+                                                          DeviceInfoPlugin();
+                                                      final AndroidDeviceInfo
+                                                          androidDeviceInfo =
+                                                          await deviceInfo.androidInfo;
+                                                      abis =
+                                                          androidDeviceInfo.supportedAbis;
+                                                      await Hive.box('settings')
+                                                          .put('supportedAbis', abis);
+                                                    }
+                                                    if (abis.contains('arm64')) {
+                                                      arch = 'arm64';
+                                                    } else if (abis.contains('armeabi')) {
+                                                      arch = 'armeabi';
+                                                    }
+                                                  }
+                                                  Navigator.pop(context);
+                                                  launchUrl(
+                                                    Uri.parse(
+                                                      '',
+                                                    ),
+                                                    mode: LaunchMode.externalApplication,
+                                                  );
+                                                },
+                                              ),
+                                            );
+                                          } else {
+                                            ShowSnackBar().showSnackBar(
+                                              context,
+                                              AppLocalizations.of(
+                                                context,
+                                              )!
+                                                  .latest,
+                                            );
+                                          }
+                                        },
+                                      );
                                     },
-                                  );
-                                },
-                                trailing: Text(
-                                  'v$appVersion',
-                                  style: const TextStyle(fontSize: 12),
+                                    trailing: Text(
+                                      'v$appVersion',
+                                      style: const TextStyle(fontSize: 12),
+                                    ),
+                                    dense: true,
+                                  ),
                                 ),
-                                dense: true,
+                              ),
+                          ),
+                            SizedBox(height: 20,),
+                            Center(
+                              child: GlassContainer(
+                                height: 80,
+                                width: 340,
+                                gradient: LinearGradient(
+                                  colors: [Colors.black87.withOpacity(0.20), Colors.white.withOpacity(0.10)],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                                borderGradient: LinearGradient(
+                                  colors: [Colors.white.withOpacity(0.60), Colors.white.withOpacity(0.10), Colors.lightGreenAccent.withOpacity(0.05), Colors.lightGreenAccent.withOpacity(0.6)],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  stops: [0.0, 0.39, 0.40, 1.0],
+                                ),
+                                blur: 18.0,
+                                borderRadius: BorderRadius.circular(16.0),
+                                borderWidth: 1.0,
+
+                                elevation: 2.0,
+
+                                shadowColor: Colors.black.withOpacity(0.20),
+                                alignment: Alignment.center,
+
+                                margin: EdgeInsets.all(3.0),
+                                padding: EdgeInsets.all(2.0),
+
+                                child: Center(
+                                  child: ListTile(
+                                    title: Text(
+                                      AppLocalizations.of(
+                                        context,
+                                      )!
+                                          .shareApp,
+                                    ),
+                                    subtitle: Text(
+                                      AppLocalizations.of(
+                                        context,
+                                      )!
+                                          .shareAppSub,
+                                    ),
+                                    onTap: () {
+                                      Share.share(
+                                        '${AppLocalizations.of(
+                                          context,
+                                        )!.shareAppText}: https://play.google.com/store/apps/details?id=com.godimexico.gomusic',
+                                      );
+                                    },
+                                    dense: true,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                      ),
-                        Center(
-                          child: GlassContainer(
-                            height: 57,
-                            width: 340,
-                            gradient: LinearGradient(
-                              colors: [Colors.black87.withOpacity(0.20), Colors.white.withOpacity(0.10)],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                            borderGradient: LinearGradient(
-                              colors: [Colors.white.withOpacity(0.60), Colors.white.withOpacity(0.10), Colors.lightGreenAccent.withOpacity(0.05), Colors.lightGreenAccent.withOpacity(0.6)],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              stops: [0.0, 0.39, 0.40, 1.0],
-                            ),
-                            blur: 18.0,
-                            borderRadius: BorderRadius.circular(16.0),
-                            borderWidth: 1.0,
-
-                            elevation: 2.0,
-
-                            shadowColor: Colors.black.withOpacity(0.20),
-                            alignment: Alignment.center,
-
-                            margin: EdgeInsets.all(3.0),
-                            padding: EdgeInsets.all(2.0),
-
-                            child: Center(
-                              child: ListTile(
-                                title: Text(
-                                  AppLocalizations.of(
-                                    context,
-                                  )!
-                                      .shareApp,
-                                ),
-                                subtitle: Text(
-                                  AppLocalizations.of(
-                                    context,
-                                  )!
-                                      .shareAppSub,
-                                ),
-                                onTap: () {
-                                  Share.share(
-                                    '${AppLocalizations.of(
-                                      context,
-                                    )!.shareAppText}: https://play.google.com/store/apps/details?id=com.godimexico.gomusic',
-                                  );
-                                },
-                                dense: true,
-                              ),
-                            ),
-                          ),
-                        ),
-                      //  Center(
-                        //  child: GlassContainer(
-                          //  height: 57,
-                           // width: 340,
-                       //     gradient: LinearGradient(
-                        //      colors: [Colors.black87.withOpacity(0.20), Colors.white.withOpacity(0.10)],
-                          //    begin: Alignment.topLeft,
-                           //   end: Alignment.bottomRight,
-                        //    ),
-                          //7  borderGradient: LinearGradient(
-                           //   colors: [Colors.white.withOpacity(0.60), Colors.white.withOpacity(0.10), Colors.lightGreenAccent.withOpacity(0.05), Colors.lightGreenAccent.withOpacity(0.6)],
-                           //   begin: Alignment.topLeft,
-                           //   end: Alignment.bottomRight,
-                          //    stops: [0.0, 0.39, 0.40, 1.0],
-                          //  ),
-                          //  blur: 18.0,
-                           // borderRadius: BorderRadius.circular(15.0),
-                         //   borderWidth: 1.0,
-
-                           // elevation: 2.0,
-
-                          //  shadowColor: Colors.black.withOpacity(0.20),
-                          //  alignment: Alignment.center,
-
-                         //   margin: EdgeInsets.all(3.0),
-                           // padding: EdgeInsets.all(2.0),
-
-                          //  child: Center(
-                            //  child: ListTile(
-                              //  title: Text(
-                                //  AppLocalizations.of(
-                                  //  context,
-                                //  )!
-                                  //    .likedWork,
+                          //  Center(
+                            //  child: GlassContainer(
+                              //  height: 57,
+                               // width: 340,
+                           //     gradient: LinearGradient(
+                            //      colors: [Colors.black87.withOpacity(0.20), Colors.white.withOpacity(0.10)],
+                              //    begin: Alignment.topLeft,
+                               //   end: Alignment.bottomRight,
+                            //    ),
+                              //7  borderGradient: LinearGradient(
+                               //   colors: [Colors.white.withOpacity(0.60), Colors.white.withOpacity(0.10), Colors.lightGreenAccent.withOpacity(0.05), Colors.lightGreenAccent.withOpacity(0.6)],
+                               //   begin: Alignment.topLeft,
+                               //   end: Alignment.bottomRight,
+                              //    stops: [0.0, 0.39, 0.40, 1.0],
                               //  ),
-                              // subtitle: Text(
-                                //  AppLocalizations.of(
-                                  //  context,
-                                 // )!
-                                   //   .buyCoffee,
-                               // ),
-                          //      dense: true,
-                            //    onTap: () {
-                              //    launchUrl(
-                                //    Uri.parse(
-                                  //    'https://gomusic.grwebsite.com/',
+                              //  blur: 18.0,
+                               // borderRadius: BorderRadius.circular(15.0),
+                             //   borderWidth: 1.0,
+
+                               // elevation: 2.0,
+
+                              //  shadowColor: Colors.black.withOpacity(0.20),
+                              //  alignment: Alignment.center,
+
+                             //   margin: EdgeInsets.all(3.0),
+                               // padding: EdgeInsets.all(2.0),
+
+                              //  child: Center(
+                                //  child: ListTile(
+                                  //  title: Text(
+                                    //  AppLocalizations.of(
+                                      //  context,
+                                    //  )!
+                                      //    .likedWork,
                                   //  ),
-                                   // mode: LaunchMode.externalApplication,
-                              //    );
-                            //    },
-                          //    ),
+                                  // subtitle: Text(
+                                    //  AppLocalizations.of(
+                                      //  context,
+                                     // )!
+                                       //   .buyCoffee,
+                                   // ),
+                              //      dense: true,
+                                //    onTap: () {
+                                  //    launchUrl(
+                                    //    Uri.parse(
+                                      //    'https://gomusic.grwebsite.com/',
+                                      //  ),
+                                       // mode: LaunchMode.externalApplication,
+                                  //    );
+                                //    },
+                              //    ),
+                              //  ),
+                            //  ),
                           //  ),
-                        //  ),
-                      //  ),
 
 
-
-                        Center(
-                          child: GlassContainer(
-                            height: 50,
-                            width: 340,
-                            gradient: LinearGradient(
-                              colors: [Colors.black87.withOpacity(0.20), Colors.white.withOpacity(0.10)],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                            borderGradient: LinearGradient(
-                              colors: [Colors.white.withOpacity(0.60), Colors.white.withOpacity(0.10), Colors.lightGreenAccent.withOpacity(0.05), Colors.lightGreenAccent.withOpacity(0.6)],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              stops: [0.0, 0.39, 0.40, 1.0],
-                            ),
-                            blur: 18.0,
-                            borderRadius: BorderRadius.circular(15.0),
-                            borderWidth: 1.0,
-
-                            elevation: 2.0,
-
-                            shadowColor: Colors.black.withOpacity(0.20),
-                            alignment: Alignment.center,
-
-                            margin: EdgeInsets.all(3.0),
-                            padding: EdgeInsets.all(2.0),
-
-                            child: Center(
-                              child: ListTile(
-                                title: Text(
-                                  AppLocalizations.of(
-                                    context,
-                                  )!
-                                      .moreInfo,
+                            SizedBox(height: 20,),
+                            Center(
+                              child: GlassContainer(
+                                height: 80,
+                                width: 340,
+                                gradient: LinearGradient(
+                                  colors: [Colors.black87.withOpacity(0.20), Colors.white.withOpacity(0.10)],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
                                 ),
-                                dense: true,
-                                onTap: () {
-                                  Navigator.pushNamed(context, '/about');
-                                },
+                                borderGradient: LinearGradient(
+                                  colors: [Colors.white.withOpacity(0.60), Colors.white.withOpacity(0.10), Colors.lightGreenAccent.withOpacity(0.05), Colors.lightGreenAccent.withOpacity(0.6)],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  stops: [0.0, 0.39, 0.40, 1.0],
+                                ),
+                                blur: 18.0,
+                                borderRadius: BorderRadius.circular(15.0),
+                                borderWidth: 1.0,
+
+                                elevation: 2.0,
+
+                                shadowColor: Colors.black.withOpacity(0.20),
+                                alignment: Alignment.center,
+
+                                margin: EdgeInsets.all(3.0),
+                                padding: EdgeInsets.all(2.0),
+
+                                child: Center(
+                                  child: ListTile(
+                                    title: Text(
+                                      AppLocalizations.of(
+                                        context,
+                                      )!
+                                          .moreInfo,
+                                    ),
+                                    dense: true,
+                                    onTap: () {
+                                      Navigator.pushNamed(context, '/about');
+                                    },
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ]),
-              ),
+const SizedBox(
+  height: 55
+),
+                            Center(
+                              child: Positioned(
+                                left: MediaQuery.sizeOf(context).width / 3,
+                                top: MediaQuery.sizeOf(context).width / 5,
+                                child: const SizedBox(
+                                  width: 150, // Ancho deseado para la imagen
+                                  height: 150, // Alto deseado para la imagen
+                                  child: Image(
+                                    fit: BoxFit.cover,
+                                    image: AssetImage(
+                                      'assets/logo.png',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
 
+                        ),
+                      ),
+                    ]),
+                  ),
+
+                ],
+              ),
             ],
           ),
         ),

@@ -729,7 +729,9 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                                         child: Column(
 
                                           children: [
+
                                             Stack(
+
                                               children: [
 
                                                 SizedBox.square(
@@ -873,7 +875,7 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                                               ),
                                               child: Column(
                                                 children: [
-                                                  AdMobWidget(adUnitId: 'ca-app-pub-2361280395457206/2787577102'),
+
                                                   Text(
                                                     item['title']
                                                             ?.toString()
@@ -904,12 +906,19 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                                                             .color,
                                                       ),
                                                     ),
+
                                                 ],
+
                                               ),
+
                                             ),
+
                                           ],
+
                                         ),
+
                                       );
+
                                     },
                                   ),
                                 ),

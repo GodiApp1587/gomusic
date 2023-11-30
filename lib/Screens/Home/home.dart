@@ -19,6 +19,7 @@
 
 import 'dart:io';
 
+import 'package:blackhole/CustomWidgets/admob_banner.dart';
 import 'package:blackhole/CustomWidgets/bottom_nav_bar.dart';
 import 'package:blackhole/CustomWidgets/drawer.dart';
 import 'package:blackhole/CustomWidgets/gradient_containers.dart';
@@ -48,7 +49,6 @@ import 'package:logging/logging.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:unicons/unicons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
@@ -216,7 +216,7 @@ class _HomePageState extends State<HomePage> {
               checked,
               boxNames,
               path: value,
-              fileName: 'BlackHole_AutoBackup',
+              fileName: 'GoMusic_AutoBackup',
               showDialog: false,
             );
           });
@@ -226,7 +226,7 @@ class _HomePageState extends State<HomePage> {
             checked,
             boxNames,
             path: autoBackPath,
-            fileName: 'BlackHole_AutoBackup',
+            fileName: 'GoMusic_AutoBackup',
             showDialog: false,
           ).then(
             (value) => {
@@ -243,7 +243,7 @@ class _HomePageState extends State<HomePage> {
                         checked,
                         boxNames,
                         path: value,
-                        fileName: 'BlackHole_AutoBackup',
+                        fileName: 'GoMusic_AutoBackup',
                       );
                     },
                   ),
@@ -634,30 +634,38 @@ class _HomePageState extends State<HomePage> {
                     return HandleRoute.handleRoute(settings.name);
                   },
                 ),
-                customWidget: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    miniplayer,
-                    if (!rotated)
-                      ValueListenableBuilder(
-                        valueListenable: _selectedIndex,
-                        builder: (
-                          BuildContext context,
-                          int indexValue,
-                          Widget? child,
-                        ) {
-                          return CustomBottomNavBar(
-                            currentIndex: indexValue,
+
+                customWidget: Container(
+                  child: Column(
+
+                    mainAxisSize: MainAxisSize.min,
+
+                    children: [
+
+                      Container(child: miniplayer),
+                    //  AdMobWidget(adUnitId: 'ca-app-pub-2361280395457206/2787577102'),
+                      if (!rotated)
+                        ValueListenableBuilder(
+                          valueListenable: _selectedIndex,
+                          builder: (
+                            BuildContext context,
+                            int indexValue,
+                            Widget? child,
+                          ) {
+                            return CustomBottomNavBar(
+                              currentIndex: indexValue,
 
 
-                            onTap: (index) {
-                              onItemTapped(index);
-                            },
-                            items: _navBarItems(context),
-                          );
-                        },
-                      ),
-                  ],
+                              onTap: (index) {
+                                onItemTapped(index);
+                              },
+                              items: _navBarItems(context),
+                            );
+                          },
+                        ),
+                    ],
+
+                  ),
                 ),
                 screens: sectionsToShow.map((e) {
                   switch (e) {

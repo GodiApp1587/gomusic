@@ -12,6 +12,7 @@ class AssetsRes {
   static const String FONDO = 'assets/fondo.png';
   static const String FONDO_AP_SETTINGS = 'assets/fondo_ap_settings.png';
   static const String FONDO_APP = 'assets/fondo_app.png';
+  static const String FONDO_LIKE = 'assets/fondo_like.png';
   static const String FONDO_THEME = 'assets/fondo_theme.png';
   static const String GOOGLE = 'assets/google.png';
   static const String INICIO = 'assets/inicio.png';

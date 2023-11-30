@@ -26,9 +26,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 class SpotifyCountry {
   Future<String> changeCountry({required BuildContext context}) async {
     String region =
-        Hive.box('settings').get('region', defaultValue: 'India') as String;
+        Hive.box('settings').get('region', defaultValue: 'Mexico') as String;
     if (!CountryCodes.localChartCodes.containsKey(region)) {
-      region = 'India';
+      region = 'Mexico';
     }
 
     await showModalBottomSheet(

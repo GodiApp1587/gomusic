@@ -17,6 +17,8 @@
  * Copyright (c) 2021-2023, Ankit Sangwan
  */
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 Widget homeDrawer({
@@ -27,17 +29,36 @@ Widget homeDrawer({
     padding: padding,
     child: Transform.rotate(
       angle: 22 / 7 * 2,
-      child: IconButton(
-        icon: const Icon(
-          Icons.horizontal_split_rounded,
-          color: Colors.white,
+      child: Container(
+        width: 42, // Ancho del contenedor
+        height: 42, // Alto del contenedor
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50), // Para un contenedor completamente redondo, utiliza la mitad del ancho o alto
+          color: Colors.black.withOpacity(0.7), // Color negro con opacidad del 50%
         ),
-        // color: Theme.of(context).iconTheme.color,
-        onPressed: () {
-          Scaffold.of(context).openDrawer();
-        },
-        tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+        child:ClipRRect(
+          borderRadius: BorderRadius.circular(50),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), // Ajusta los valores de sigmaX y sigmaY según tu preferencia
+            child: Container(
+              color: Colors.transparent,
+
+          child: IconButton(
+            icon: const Icon(
+              Icons.horizontal_split_rounded,
+              color: Colors.white,
+            ),
+            // color: Theme.of(context).iconTheme.color,
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          ),
+        ),
       ),
     ),
+  ),
+    ),
+
   );
 }

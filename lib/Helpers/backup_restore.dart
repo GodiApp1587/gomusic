@@ -88,7 +88,7 @@ Future<String> createBackup(
       final String time =
           '${now.hour}${now.minute}_${now.day}${now.month}${now.year}';
       final zipFile =
-          File('$savePath/${fileName ?? "BlackHole_Backup_$time"}.zip');
+          File('$savePath/${fileName ?? "GoMusic_Backup_$time"}.zip');
 
       await ZipFile.createFromFiles(
         sourceDir: saveDir,

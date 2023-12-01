@@ -117,7 +117,7 @@ class HorizontalAlbumsListSeparated extends StatelessWidget {
                                   'assets/artist.png',
                                 )
                               : const AssetImage(
-                                  'assets/cover.jpg',
+                                  'assets/cover.png',
                                 ),
                     ),
                     trailing: SongTileTrailingMenu(

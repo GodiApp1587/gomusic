@@ -674,7 +674,7 @@ class _SearchPageState extends State<SearchPage> {
                                                                     'artist'
                                                             ? 'assets/artist.png'
                                                             : title == 'Songs'
-                                                                ? 'assets/cover.jpg'
+                                                                ? 'assets/cover.png'
                                                                 : 'assets/album.png',
                                                       ),
                                                       imageUrl: items[index]

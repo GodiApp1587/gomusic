@@ -103,7 +103,7 @@ class AddToOffPlaylist {
                                 fit: BoxFit.cover,
                                 height: 50.0,
                                 width: 50.0,
-                                image: AssetImage('assets/cover.jpg'),
+                                image: AssetImage('assets/cover.png'),
                               ),
                             ),
                           ),
@@ -227,7 +227,7 @@ class AddToPlaylist {
                                 imageList: playlistDetails[playlistNames[index]]
                                     ['imagesList'] as List,
                                 showGrid: true,
-                                placeholderImage: 'assets/cover.jpg',
+                                placeholderImage: 'assets/cover.png',
                               ),
                         title: Text(
                           '${playlistDetails.containsKey(playlistNames[index]) ? playlistDetails[playlistNames[index]]["name"] ?? playlistNames[index] : playlistNames[index]}',

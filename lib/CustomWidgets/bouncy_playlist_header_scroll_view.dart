@@ -45,7 +45,7 @@ class BouncyPlaylistHeaderScrollView extends StatelessWidget {
     required this.title,
     this.subtitle,
     this.secondarySubtitle,
-    this.placeholderImage = 'assets/cover.jpg',
+    this.placeholderImage = 'assets/cover.png',
     this.localImage = false,
     this.imageUrl,
     this.actions,

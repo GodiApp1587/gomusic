@@ -238,7 +238,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                                                 child: name == 'Favorite Songs'
                                                     ? const Image(
                                                         image: AssetImage(
-                                                          'assets/cover.jpg',
+                                                          'assets/cover.png',
                                                         ),
                                                       )
                                                     : const Image(
@@ -253,7 +253,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                                                   ['imagesList'] as List,
                                               showGrid: true,
                                               placeholderImage:
-                                                  'assets/cover.jpg',
+                                                  'assets/cover.png',
                                             ),
                                     );
                                   },
@@ -415,7 +415,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                                     child: name == 'Favorite Songs'
                                         ? const Image(
                                             image: AssetImage(
-                                              'assets/cover.jpg',
+                                              'assets/cover.png',
                                             ),
                                           )
                                         : const Image(
@@ -429,7 +429,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
                                   imageList:
                                       playlistDetails[name]['imagesList'] as List,
                                   showGrid: true,
-                                  placeholderImage: 'assets/cover.jpg',
+                                  placeholderImage: 'assets/cover.png',
                                 ),
                           title: Text(
                             showName,

@@ -117,7 +117,7 @@ class HorizontalAlbumsList extends StatelessWidget {
                                   'assets/artist.png',
                                 )
                               : const AssetImage(
-                                  'assets/cover.jpg',
+                                  'assets/cover.png',
                                 ),
                     ),
                   );
@@ -149,7 +149,7 @@ class HorizontalAlbumsList extends StatelessWidget {
                                   'assets/artist.png',
                                 )
                               : const AssetImage(
-                                  'assets/cover.jpg',
+                                  'assets/cover.png',
                                 ),
                 ),
                 builder: ({

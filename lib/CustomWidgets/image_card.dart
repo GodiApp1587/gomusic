@@ -32,7 +32,7 @@ Widget imageCard({
   double borderRadius = 7.0,
   double? boxDimension = 55.0,
   ImageProvider placeholderImage = const AssetImage(
-    'assets/cover.jpg',
+    'assets/cover.png',
   ),
   bool selected = false,
   ImageQuality imageQuality = ImageQuality.low,

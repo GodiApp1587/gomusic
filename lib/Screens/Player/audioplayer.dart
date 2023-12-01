@@ -1102,7 +1102,7 @@ class NowPlayingStream extends StatelessWidget {
                             ? const SizedBox.square(
                           dimension: 50,
                           child: Image(
-                            image: AssetImage('assets/cover.jpg'),
+                            image: AssetImage('assets/cover.png'),
                           ),
                         )
                             : SizedBox.square(
@@ -1128,7 +1128,7 @@ class NowPlayingStream extends StatelessWidget {
                             const Image(
                               fit: BoxFit.cover,
                               image: AssetImage(
-                                'assets/cover.jpg',
+                                'assets/cover.png',
                               ),
                             ),
                             placeholder:
@@ -1136,7 +1136,7 @@ class NowPlayingStream extends StatelessWidget {
                             const Image(
                               fit: BoxFit.cover,
                               image: AssetImage(
-                                'assets/cover.jpg',
+                                'assets/cover.png',
                               ),
                             ),
                             imageUrl: queue[queueStateIndex + index]
@@ -1530,7 +1530,7 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                             ) {
                           return const Image(
                             fit: BoxFit.cover,
-                            image: AssetImage('assets/cover.jpg'),
+                            image: AssetImage('assets/cover.png'),
                           );
                         },
                         image: FileImage(
@@ -1544,12 +1544,12 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                         errorWidget: (BuildContext context, _, __) =>
                         const Image(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/cover.jpg'),
+                          image: AssetImage('assets/cover.png'),
                         ),
                         placeholder: (BuildContext context, _) =>
                         const Image(
                           fit: BoxFit.cover,
-                          image: AssetImage('assets/cover.jpg'),
+                          image: AssetImage('assets/cover.png'),
                         ),
                         imageUrl: widget.mediaItem.artUri.toString(),
                         width: widget.width * 0.85,

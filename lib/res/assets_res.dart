@@ -8,6 +8,7 @@ class AssetsRes {
   static const String BACK = 'assets/back.png';
   static const String BLACK = 'assets/black.png';
   static const String BOTTOM = 'assets/bottom.png';
+  static const String COVER = 'assets/cover.png';
   static const String DRAWER = 'assets/drawer.png';
   static const String FONDO = 'assets/fondo.png';
   static const String FONDO_AP_SETTINGS = 'assets/fondo_ap_settings.png';

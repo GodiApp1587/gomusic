@@ -103,7 +103,7 @@ class _MiniPlayerState extends State<MiniPlayer> {
                   vertical: 2.0,
 
                 ),
-                elevation: 0,
+                elevation: 12,
              color: Colors.transparent,
                 child: GlassContainer(
 blur:20,

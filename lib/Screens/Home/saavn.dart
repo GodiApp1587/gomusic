@@ -267,7 +267,7 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                                     imageList: playlistDetails[name]
                                         ['imagesList'] as List,
                                     showGrid: true,
-                                    placeholderImage: 'assets/cover.jpg',
+                                    placeholderImage: 'assets/cover.png',
                                   ),
                                   builder: ({
                                     required BuildContext context,
@@ -420,10 +420,13 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                   : Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Center(child: AdMobWidget(adUnitId: 'ca-app-pub-2361280395457206/1133789473')),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(15, 10, 15, 5),
                           child: Row(
+
                             children: [
+                              SizedBox(height: 20,),
                               Text(
                                 data['modules'][lists[idx]]?['title']
                                         ?.toString()
@@ -607,7 +610,7 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                                                             'assets/artist.png',
                                                           )
                                                         : const AssetImage(
-                                                            'assets/cover.jpg',
+                                                            'assets/cover.png',
                                                           ),
                                               ),
                                             ),
@@ -705,7 +708,7 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                                                       'assets/artist.png',
                                                     )
                                                   : const AssetImage(
-                                                      'assets/cover.jpg',
+                                                      'assets/cover.png',
                                                     ),
                                     ),
                                     builder: ({

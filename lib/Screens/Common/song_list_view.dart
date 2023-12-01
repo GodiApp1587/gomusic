@@ -166,7 +166,7 @@ class _SongsListViewPageState extends State<SongsListViewPage> {
                 onPlayTap: widget.onPlay,
                 onShuffleTap: widget.onShuffle,
                 placeholderImage:
-                    widget.placeholderImageUrl ?? 'assets/cover.jpg',
+                    widget.placeholderImageUrl ?? 'assets/cover.png',
                 imageUrl: UrlImageGetter([widget.imageUrl]).mediumQuality,
                 sliverList: SliverList(
                   delegate: SliverChildListDelegate([

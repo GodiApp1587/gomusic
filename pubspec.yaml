@@ -96,6 +96,7 @@ flutter:
     - assets/back.png
     - assets/black.png
     - assets/bottom.png
+    - assets/cover.png
     - assets/drawer.png
     - assets/fondo.png
     - assets/fondo_ap_settings.png

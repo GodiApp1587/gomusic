@@ -580,7 +580,7 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
                                               (entry.key == 'Top Songs' ||
                                                       entry.key ==
                                                           'Latest Release')
-                                                  ? 'assets/cover.jpg'
+                                                  ? 'assets/cover.png'
                                                   : 'assets/album.png',
                                             ),
                                             imageUrl: entry.value[index]

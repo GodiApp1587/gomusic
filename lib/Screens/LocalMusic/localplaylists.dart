@@ -127,7 +127,7 @@ class _LocalPlaylistsState extends State<LocalPlaylists> {
                             fit: BoxFit.cover,
                             height: 50.0,
                             width: 50.0,
-                            image: AssetImage('assets/cover.jpg'),
+                            image: AssetImage('assets/cover.png'),
                           ),
                         ),
                       ),

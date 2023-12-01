@@ -117,9 +117,9 @@ class PlayerInvoke {
 
   static void setOffDesktopValues(List response, int index) {
     getTemporaryDirectory().then((tempDir) async {
-      final File file = File('${tempDir.path}/cover.jpg');
+      final File file = File('${tempDir.path}/cover.png');
       if (!await file.exists()) {
-        final byteData = await rootBundle.load('assets/cover.jpg');
+        final byteData = await rootBundle.load('assets/cover.png');
         await file.writeAsBytes(
           byteData.buffer
               .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes),
@@ -156,9 +156,9 @@ class PlayerInvoke {
 
   static void setOffValues(List response, int index) {
     getTemporaryDirectory().then((tempDir) async {
-      final File file = File('${tempDir.path}/cover.jpg');
+      final File file = File('${tempDir.path}/cover.png');
       if (!await file.exists()) {
-        final byteData = await rootBundle.load('assets/cover.jpg');
+        final byteData = await rootBundle.load('assets/cover.png');
         await file.writeAsBytes(
           byteData.buffer
               .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes),

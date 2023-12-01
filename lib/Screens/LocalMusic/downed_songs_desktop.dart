@@ -424,7 +424,7 @@ class _DownloadedSongsDesktopState extends State<DownloadedSongsDesktop>
 //                   child: Stack(
 //                     children: [
 //                       const Image(
-//                         image: AssetImage('assets/cover.jpg'),
+//                         image: AssetImage('assets/cover.png'),
 //                       ),
 //                       if (_cachedVideos[index]['image'] == null)
 //                         const SizedBox()
@@ -700,7 +700,7 @@ class _SongsTabState extends State<SongsTab>
                           fit: BoxFit.cover,
                           height: 50,
                           width: 50,
-                          image: AssetImage('assets/cover.jpg'),
+                          image: AssetImage('assets/cover.png'),
                         ),
                       ),
                       title: Text(
@@ -945,7 +945,7 @@ class _SongsTabState extends State<SongsTab>
                       //     //                               ? const Image(
                       //     //                                   fit: BoxFit.cover,
                       //     //                                   image: AssetImage(
-                      //     //                                       'assets/cover.jpg'),
+                      //     //                                       'assets/cover.png'),
                       //     //                                 )
                       //     //                               : Image(
                       //     //                                   fit: BoxFit.cover,

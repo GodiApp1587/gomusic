@@ -19,6 +19,7 @@
 
 import 'package:app_links/app_links.dart';
 import 'package:blackhole/APIs/spotify_api.dart';
+import 'package:blackhole/CustomWidgets/admob_banner.dart';
 import 'package:blackhole/CustomWidgets/custom_physics.dart';
 import 'package:blackhole/CustomWidgets/drawer.dart';
 import 'package:blackhole/CustomWidgets/empty_screen.dart';
@@ -88,10 +89,15 @@ class _TopChartsState extends State<TopCharts>
                     await SpotifyCountry().changeCountry(context: context);
                   },
                 ),
+
               ),
+
+
             ],
+
             bottom: TabBar(
               indicatorSize: TabBarIndicatorSize.label,
+
               tabs: [
                 Tab(
                   child: Text(
@@ -123,7 +129,9 @@ class _TopChartsState extends State<TopCharts>
             elevation: 0,
             automaticallyImplyLeading: false,
             leading: rotated ? null : homeDrawer(context: context),
+
           ),
+
           body: NotificationListener(
             onNotification: (overscroll) {
               if (overscroll is OverscrollNotification &&

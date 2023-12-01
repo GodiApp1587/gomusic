@@ -323,7 +323,7 @@ class _YouTubeState extends State<YouTube>
                                                                     'assets/ytCover.png',
                                                                   )
                                                                 : const AssetImage(
-                                                                    'assets/cover.jpg',
+                                                                    'assets/cover.png',
                                                                   ),
                                                           ),
                                                           imageUrl: item['image']
@@ -338,7 +338,7 @@ class _YouTubeState extends State<YouTube>
                                                                     'assets/ytCover.png',
                                                                   )
                                                                 : const AssetImage(
-                                                                    'assets/cover.jpg',
+                                                                    'assets/cover.png',
                                                                   ),
                                                           ),
                                                         ),

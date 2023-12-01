@@ -22,7 +22,7 @@ class _MusicPlaybackPageState extends State<MusicPlaybackPage> {
   String streamingWifiQuality = Hive.box('settings')
       .get('streamingWifiQuality', defaultValue: '320 kbps') as String;
   String ytQuality =
-      Hive.box('settings').get('ytQuality', defaultValue: 'Low') as String;
+      Hive.box('settings').get('ytQuality', defaultValue: 'High') as String;
   String region =
       Hive.box('settings').get('region', defaultValue: 'Mexico') as String;
   List<String> languages = [

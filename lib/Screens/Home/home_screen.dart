@@ -19,6 +19,7 @@
 
 import 'dart:math';
 
+import 'package:blackhole/CustomWidgets/admob_banner.dart';
 import 'package:blackhole/CustomWidgets/drawer.dart';
 import 'package:blackhole/CustomWidgets/textinput_dialog.dart';
 import 'package:blackhole/Screens/Home/saavn.dart';
@@ -28,6 +29,7 @@ import 'package:blackhole/Screens/YouTube/youtube_playlist.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:glassmorphism_widgets/glassmorphism_widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -207,65 +209,72 @@ class _HomeScreenState extends State<HomeScreen> {
                         animation: _scrollController,
                         builder: (context, child) {
                           return GestureDetector(
-                            child: AnimatedContainer(
-                              width: (!_scrollController.hasClients ||
-                                      _scrollController.positions.length > 1)
-                                  ? MediaQuery.sizeOf(context).width
-                                  : max(
-                                      MediaQuery.sizeOf(context).width -
-                                          _scrollController.offset
-                                              .roundToDouble(),
-                                      MediaQuery.sizeOf(context).width -
-                                          (rotated ? 0 : 75),
-                                    ),
-                              height: 55.0,
-                              duration: const Duration(
-                                milliseconds: 150,
-                              ),
-                              padding: const EdgeInsets.all(2.0),
-                              // margin: EdgeInsets.zero,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                  10.0,
+                            child: GlassContainer(
+                              blur: 15,
+                              border: 1.2,
+                              child: AnimatedContainer(
+                                width: (!_scrollController.hasClients ||
+                                        _scrollController.positions.length > 1)
+                                    ? MediaQuery.sizeOf(context).width
+                                    : max(
+                                        MediaQuery.sizeOf(context).width -
+                                            _scrollController.offset
+                                                .roundToDouble(),
+                                        MediaQuery.sizeOf(context).width -
+                                            (rotated ? 0 : 75),
+                                      ),
+                                height: 55.0,
+                                duration: const Duration(
+                                  milliseconds: 150,
                                 ),
-                                color: Colors.white.withOpacity(0.3),
-                             //   boxShadow: const [
-                               //   BoxShadow(
-                                 //   color: Colors.black26,
-                                 //   blurRadius: 5.0,
-                                 //   offset: Offset(1.5, 1.5),
-                                    // shadow direction: bottom right
-                                //  ),
-                              //  ],
-                              ),
-                              child: Row(
-                                children: [
-                                  const SizedBox(
-                                    width: 10.0,
+                                padding: const EdgeInsets.all(2.0),
+                                // margin: EdgeInsets.zero,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                    10.0,
                                   ),
-                                  Icon(
-                                    CupertinoIcons.search,
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
+                                  color: Colors.transparent,
+                               //   boxShadow: const [
+                                 //   BoxShadow(
+                                   //   color: Colors.black26,
+                                   //   blurRadius: 5.0,
+                                   //   offset: Offset(1.5, 1.5),
+                                      // shadow direction: bottom right
+                                  //  ),
+                                //  ],
+                                ),
+                                child: Center(
+                                  child: Row(
+
+                                    children: [
+                                      const SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      Icon(
+                                        CupertinoIcons.search,
+                                        color:
+                                            Theme.of(context).colorScheme.secondary,
+                                      ),
+                                      const SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      Text(
+                                        AppLocalizations.of(
+                                          context,
+                                        )!
+                                            .searchText,
+                                        style: TextStyle(
+                                          fontSize: 16.0,
+                                          color: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall!
+                                              .color,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  const SizedBox(
-                                    width: 10.0,
-                                  ),
-                                  Text(
-                                    AppLocalizations.of(
-                                      context,
-                                    )!
-                                        .searchText,
-                                    style: TextStyle(
-                                      fontSize: 16.0,
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall!
-                                          .color,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
                             ),
                             onTap: () => Navigator.push(
@@ -280,12 +289,18 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         },
+
                       ),
+
+
+
                     ),
+
                   ),
 
 
                 ];
+
               },
               body: SaavnHomePage(),
             ),

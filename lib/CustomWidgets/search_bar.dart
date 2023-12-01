@@ -78,16 +78,12 @@ class _SearchBarState extends State<SearchBar> {
             bool hidden,
             Widget? child,
           ) {
-            return Container(
-              color: Colors.green,
-
-              child: Visibility(
-                visible: !hidden,
-                child: GestureDetector(
-                  onTap: () {
-                    hide.value = true;
-                  },
-                ),
+            return Visibility(
+              visible: !hidden,
+              child: GestureDetector(
+                onTap: () {
+                  hide.value = true;
+                },
               ),
             );
           },

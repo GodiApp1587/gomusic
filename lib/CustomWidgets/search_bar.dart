@@ -78,12 +78,20 @@ class _SearchBarState extends State<SearchBar> {
             bool hidden,
             Widget? child,
           ) {
-            return Visibility(
-              visible: !hidden,
-              child: GestureDetector(
-                onTap: () {
-                  hide.value = true;
-                },
+            return Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/back.png'),
+                  fit: BoxFit.cover, // Ajusta el ajuste de la imagen según sea necesario
+                ),
+              ),
+              child: Visibility(
+                visible: !hidden,
+                child: GestureDetector(
+                  onTap: () {
+                    hide.value = true;
+                  },
+                ),
               ),
             );
           },

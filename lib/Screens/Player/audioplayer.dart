@@ -70,11 +70,11 @@ class _PlayScreenState extends State<PlayScreen> {
       .get('gradientType', defaultValue: 'fullMix')
       .toString();
   final bool getLyricsOnline =
-      Hive.box('settings').get('getLyricsOnline', defaultValue: true) as bool;
+  Hive.box('settings').get('getLyricsOnline', defaultValue: true) as bool;
 
   final MyTheme currentTheme = GetIt.I<MyTheme>();
   final ValueNotifier<List<Color?>?> gradientColor =
-      ValueNotifier<List<Color?>?>(GetIt.I<MyTheme>().playGradientColor);
+  ValueNotifier<List<Color?>?>(GetIt.I<MyTheme>().playGradientColor);
   final PanelController _panelController = PanelController();
   final AudioPlayerHandler audioHandler = GetIt.I<AudioPlayerHandler>();
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
@@ -91,9 +91,9 @@ class _PlayScreenState extends State<PlayScreen> {
   }
 
   Future<dynamic> setTimer(
-    BuildContext context,
-    BuildContext? scaffoldContext,
-  ) {
+      BuildContext context,
+      BuildContext? scaffoldContext,
+      ) {
     return showDialog(
       context: context,
       builder: (context) {
@@ -151,9 +151,9 @@ class _PlayScreenState extends State<PlayScreen> {
                   style: TextButton.styleFrom(
                     backgroundColor: Theme.of(context).colorScheme.secondary,
                     foregroundColor:
-                        Theme.of(context).colorScheme.secondary == Colors.white
-                            ? Colors.black
-                            : Colors.white,
+                    Theme.of(context).colorScheme.secondary == Colors.white
+                        ? Colors.black
+                        : Colors.white,
                   ),
                   onPressed: () {
                     sleepTimer(_time.inMinutes);
@@ -215,34 +215,33 @@ class _PlayScreenState extends State<PlayScreen> {
       onDismissed: (direction) {
         Navigator.pop(context);
       },
-
       child: StreamBuilder<MediaItem?>(
         stream: audioHandler.mediaItem,
         builder: (context, snapshot) {
           final MediaItem? mediaItem = snapshot.data;
           if (mediaItem == null) return const SizedBox();
           final offline =
-              !mediaItem.extras!['url'].toString().startsWith('http');
+          !mediaItem.extras!['url'].toString().startsWith('http');
           if (mediaItem.artUri != null && mediaItem.artUri.toString() != '') {
             mediaItem.artUri.toString().startsWith('file')
                 ? getColors(
-                    imageProvider: FileImage(
-                      File(
-                        mediaItem.artUri!.toFilePath(),
-                      ),
-                    ),
-                    // useDominantAndDarkerColors: gradientType == 'halfLight' ||
-                    //     gradientType == 'fullLight' ||
-                    //     gradientType == 'fullMix',
-                  ).then((value) => updateBackgroundColors(value))
+              imageProvider: FileImage(
+                File(
+                  mediaItem.artUri!.toFilePath(),
+                ),
+              ),
+              // useDominantAndDarkerColors: gradientType == 'halfLight' ||
+              //     gradientType == 'fullLight' ||
+              //     gradientType == 'fullMix',
+            ).then((value) => updateBackgroundColors(value))
                 : getColors(
-                    imageProvider: CachedNetworkImageProvider(
-                      mediaItem.artUri.toString(),
-                    ),
-                    // useDominantAndDarkerColors: gradientType == 'halfLight' ||
-                    //     gradientType == 'fullLight' ||
-                    //     gradientType == 'fullMix',
-                  ).then((value) => updateBackgroundColors(value));
+              imageProvider: CachedNetworkImageProvider(
+                mediaItem.artUri.toString(),
+              ),
+              // useDominantAndDarkerColors: gradientType == 'halfLight' ||
+              //     gradientType == 'fullLight' ||
+              //     gradientType == 'fullMix',
+            ).then((value) => updateBackgroundColors(value));
           }
           return ValueListenableBuilder(
             valueListenable: gradientColor,
@@ -313,7 +312,6 @@ class _PlayScreenState extends State<PlayScreen> {
                                   'title': mediaItem.album,
                                   'image': mediaItem.artUri,
                                 },
-
                               ),
                             ),
                           );
@@ -348,12 +346,11 @@ class _PlayScreenState extends State<PlayScreen> {
                                   AppLocalizations.of(context)!.sleepTimer,
                                   style: TextStyle(
                                     color:
-                                        Theme.of(context).colorScheme.secondary,
+                                    Theme.of(context).colorScheme.secondary,
                                   ),
                                 ),
                                 contentPadding: const EdgeInsets.all(10.0),
                                 children: [
-
                                   ListTile(
                                     title: Text(
                                       AppLocalizations.of(context)!.sleepDur,
@@ -396,188 +393,188 @@ class _PlayScreenState extends State<PlayScreen> {
                       },
                       itemBuilder: (context) => offline
                           ? [
-                              if (mediaItem.extras?['album_id'] != null)
-                                PopupMenuItem(
-                                  value: 5,
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.album_rounded,
-                                        color:
-                                            Theme.of(context).iconTheme.color,
-                                      ),
-                                      const SizedBox(width: 10.0),
-                                      Text(
-                                        AppLocalizations.of(context)!.viewAlbum,
-                                      ),
-                                    ],
-                                  ),
+                        if (mediaItem.extras?['album_id'] != null)
+                          PopupMenuItem(
+                            value: 5,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.album_rounded,
+                                  color:
+                                  Theme.of(context).iconTheme.color,
                                 ),
-                              PopupMenuItem(
-                                value: 1,
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      CupertinoIcons.timer,
-                                      color: Theme.of(context).iconTheme.color,
-                                    ),
-                                    const SizedBox(width: 10.0),
-                                    Text(
-                                      AppLocalizations.of(context)!.sleepTimer,
-                                    ),
-                                  ],
+                                const SizedBox(width: 10.0),
+                                Text(
+                                  AppLocalizations.of(context)!.viewAlbum,
                                 ),
+                              ],
+                            ),
+                          ),
+                        PopupMenuItem(
+                          value: 1,
+                          child: Row(
+                            children: [
+                              Icon(
+                                CupertinoIcons.timer,
+                                color: Theme.of(context).iconTheme.color,
                               ),
-                              if (Hive.box('settings').get(
-                                'supportEq',
-                                defaultValue: false,
-                              ) as bool)
-                                PopupMenuItem(
-                                  value: 4,
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.equalizer_rounded,
-                                        color:
-                                            Theme.of(context).iconTheme.color,
-                                      ),
-                                      const SizedBox(width: 10.0),
-                                      Text(
-                                        AppLocalizations.of(context)!.equalizer,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              PopupMenuItem(
-                                value: 10,
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.info_rounded,
-                                      color: Theme.of(context).iconTheme.color,
-                                    ),
-                                    const SizedBox(width: 10.0),
-                                    Text(
-                                      AppLocalizations.of(context)!.songInfo,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ]
-                          : [
-                              if (mediaItem.extras?['album_id'] != null)
-                                PopupMenuItem(
-                                  value: 5,
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.album_rounded,
-                                      ),
-                                      const SizedBox(width: 10.0),
-                                      Text(
-                                        AppLocalizations.of(context)!.viewAlbum,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              PopupMenuItem(
-                                value: 0,
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.playlist_add_rounded,
-                                      color: Theme.of(context).iconTheme.color,
-                                    ),
-                                    const SizedBox(width: 10.0),
-                                    Text(
-                                      AppLocalizations.of(context)!
-                                          .addToPlaylist,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              PopupMenuItem(
-                                value: 1,
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      CupertinoIcons.timer,
-                                      color: Theme.of(context).iconTheme.color,
-                                    ),
-                                    const SizedBox(width: 10.0),
-                                    Text(
-                                      AppLocalizations.of(context)!.sleepTimer,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              if (Hive.box('settings').get(
-                                'supportEq',
-                                defaultValue: false,
-                              ) as bool)
-                                PopupMenuItem(
-                                  value: 4,
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.equalizer_rounded,
-                                        color:
-                                            Theme.of(context).iconTheme.color,
-                                      ),
-                                      const SizedBox(width: 10.0),
-                                      Text(
-                                        AppLocalizations.of(context)!.equalizer,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              PopupMenuItem(
-                                value: 3,
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      MdiIcons.youtube,
-                                      color: Theme.of(context).iconTheme.color,
-                                    ),
-                                    const SizedBox(width: 10.0),
-                                    Text(
-                                      mediaItem.genre == 'YouTube'
-                                          ? AppLocalizations.of(
-                                              context,
-                                            )!
-                                              .watchVideo
-                                          : AppLocalizations.of(
-                                              context,
-                                            )!
-                                              .searchVideo,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              PopupMenuItem(
-                                value: 10,
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.info_rounded,
-                                      color: Theme.of(context).iconTheme.color,
-                                    ),
-                                    const SizedBox(width: 10.0),
-                                    Text(
-                                      AppLocalizations.of(context)!.songInfo,
-                                    ),
-                                  ],
-                                ),
+                              const SizedBox(width: 10.0),
+                              Text(
+                                AppLocalizations.of(context)!.sleepTimer,
                               ),
                             ],
+                          ),
+                        ),
+                        if (Hive.box('settings').get(
+                          'supportEq',
+                          defaultValue: false,
+                        ) as bool)
+                          PopupMenuItem(
+                            value: 4,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.equalizer_rounded,
+                                  color:
+                                  Theme.of(context).iconTheme.color,
+                                ),
+                                const SizedBox(width: 10.0),
+                                Text(
+                                  AppLocalizations.of(context)!.equalizer,
+                                ),
+                              ],
+                            ),
+                          ),
+                        PopupMenuItem(
+                          value: 10,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.info_rounded,
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                              const SizedBox(width: 10.0),
+                              Text(
+                                AppLocalizations.of(context)!.songInfo,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]
+                          : [
+                        if (mediaItem.extras?['album_id'] != null)
+                          PopupMenuItem(
+                            value: 5,
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.album_rounded,
+                                ),
+                                const SizedBox(width: 10.0),
+                                Text(
+                                  AppLocalizations.of(context)!.viewAlbum,
+                                ),
+                              ],
+                            ),
+                          ),
+                        PopupMenuItem(
+                          value: 0,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.playlist_add_rounded,
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                              const SizedBox(width: 10.0),
+                              Text(
+                                AppLocalizations.of(context)!
+                                    .addToPlaylist,
+                              ),
+                            ],
+                          ),
+                        ),
+                        PopupMenuItem(
+                          value: 1,
+                          child: Row(
+                            children: [
+                              Icon(
+                                CupertinoIcons.timer,
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                              const SizedBox(width: 10.0),
+                              Text(
+                                AppLocalizations.of(context)!.sleepTimer,
+                              ),
+                            ],
+                          ),
+                        ),
+                        if (Hive.box('settings').get(
+                          'supportEq',
+                          defaultValue: false,
+                        ) as bool)
+                          PopupMenuItem(
+                            value: 4,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.equalizer_rounded,
+                                  color:
+                                  Theme.of(context).iconTheme.color,
+                                ),
+                                const SizedBox(width: 10.0),
+                                Text(
+                                  AppLocalizations.of(context)!.equalizer,
+                                ),
+                              ],
+                            ),
+                          ),
+                        PopupMenuItem(
+                          value: 3,
+                          child: Row(
+                            children: [
+                              Icon(
+                                MdiIcons.youtube,
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                              const SizedBox(width: 10.0),
+                              Text(
+                                mediaItem.genre == 'YouTube'
+                                    ? AppLocalizations.of(
+                                  context,
+                                )!
+                                    .watchVideo
+                                    : AppLocalizations.of(
+                                  context,
+                                )!
+                                    .searchVideo,
+                              ),
+                            ],
+                          ),
+                        ),
+                        PopupMenuItem(
+                          value: 10,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.info_rounded,
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                              const SizedBox(width: 10.0),
+                              Text(
+                                AppLocalizations.of(context)!.songInfo,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
                 body: LayoutBuilder(
                   builder: (
-                    BuildContext context,
-                    BoxConstraints constraints,
-                  ) {
+                      BuildContext context,
+                      BoxConstraints constraints,
+                      ) {
                     if (constraints.maxWidth > constraints.maxHeight) {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -648,32 +645,32 @@ class _PlayScreenState extends State<PlayScreen> {
                     end: gradientType == 'simple'
                         ? Alignment.bottomRight
                         : (gradientType == 'halfLight' ||
-                                gradientType == 'halfDark')
-                            ? Alignment.center
-                            : Alignment.bottomCenter,
+                        gradientType == 'halfDark')
+                        ? Alignment.center
+                        : Alignment.bottomCenter,
                     colors: gradientType == 'simple'
                         ? Theme.of(context).brightness == Brightness.dark
-                            ? currentTheme.getBackGradient()
-                            : [
-                                const Color(0xfff5f9ff),
-                                Colors.white,
-                              ]
+                        ? currentTheme.getBackGradient()
+                        : [
+                      const Color(0xfff5f9ff),
+                      Colors.white,
+                    ]
                         : Theme.of(context).brightness == Brightness.dark
-                            ? [
-                                if (gradientType == 'halfDark' ||
-                                    gradientType == 'fullDark')
-                                  value?[1] ?? Colors.grey[900]!
-                                else
-                                  value?[0] ?? Colors.grey[900]!,
-                                if (gradientType == 'fullMix')
-                                  value?[1] ?? Colors.black
-                                else
-                                  Colors.black,
-                              ]
-                            : [
-                                value?[0] ?? const Color(0xfff5f9ff),
-                                Colors.white,
-                              ],
+                        ? [
+                      if (gradientType == 'halfDark' ||
+                          gradientType == 'fullDark')
+                        value?[1] ?? Colors.grey[900]!
+                      else
+                        value?[0] ?? Colors.grey[900]!,
+                      if (gradientType == 'fullMix')
+                        value?[1] ?? Colors.black
+                      else
+                        Colors.black,
+                    ]
+                        : [
+                      value?[0] ?? const Color(0xfff5f9ff),
+                      Colors.white,
+                    ],
                   ),
                 ),
                 child: child,
@@ -704,7 +701,7 @@ class PositionData {
 
 class QueueState {
   static const QueueState empty =
-      QueueState([], 0, [], AudioServiceRepeatMode.none);
+  QueueState([], 0, [], AudioServiceRepeatMode.none);
 
   final List<MediaItem> queue;
   final int? queueIndex;
@@ -712,17 +709,17 @@ class QueueState {
   final AudioServiceRepeatMode repeatMode;
 
   const QueueState(
-    this.queue,
-    this.queueIndex,
-    this.shuffleIndices,
-    this.repeatMode,
-  );
+      this.queue,
+      this.queueIndex,
+      this.shuffleIndices,
+      this.repeatMode,
+      );
 
   bool get hasPrevious =>
       repeatMode != AudioServiceRepeatMode.none || (queueIndex ?? 0) > 0;
   bool get hasNext =>
       repeatMode != AudioServiceRepeatMode.none ||
-      (queueIndex ?? 0) + 1 < queue.length;
+          (queueIndex ?? 0) + 1 < queue.length;
 
   List<int> get indices =>
       shuffleIndices ?? List.generate(queue.length, (i) => i);
@@ -736,12 +733,12 @@ class ControlButtons extends StatelessWidget {
   final Color? dominantColor;
 
   const ControlButtons(
-    this.audioHandler, {
-    this.shuffle = false,
-    this.miniplayer = false,
-    this.buttons = const ['Previous', 'Play/Pause', 'Next'],
-    this.dominantColor,
-  });
+      this.audioHandler, {
+        this.shuffle = false,
+        this.miniplayer = false,
+        this.buttons = const ['Previous', 'Play/Pause', 'Next'],
+        this.dominantColor,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -756,21 +753,21 @@ class ControlButtons extends StatelessWidget {
             return !online
                 ? const SizedBox()
                 : miniplayer
-                    ? ValueListenableBuilder(
-                        valueListenable:
-                            Hive.box('Favorite Songs').listenable(),
-                        builder:
-                            (BuildContext context, Box box, Widget? widget) {
-                          return LikeButton(
-                            mediaItem: mediaItem,
-                            size: 22.0,
-                          );
-                        },
-                      )
-                    : LikeButton(
-                        mediaItem: mediaItem,
-                        size: 22.0,
-                      );
+                ? ValueListenableBuilder(
+              valueListenable:
+              Hive.box('Favorite Songs').listenable(),
+              builder:
+                  (BuildContext context, Box box, Widget? widget) {
+                return LikeButton(
+                  mediaItem: mediaItem,
+                  size: 22.0,
+                );
+              },
+            )
+                : LikeButton(
+              mediaItem: mediaItem,
+              size: 22.0,
+            );
           case 'Previous':
             return StreamBuilder<QueueState>(
               stream: audioHandler.queueState,
@@ -818,21 +815,21 @@ class ControlButtons extends StatelessWidget {
                         Center(
                           child: playing
                               ? IconButton(
-                                  tooltip: AppLocalizations.of(context)!.pause,
-                                  onPressed: audioHandler.pause,
-                                  icon: const Icon(
-                                    Icons.pause_rounded,
-                                  ),
-                                  color: Theme.of(context).iconTheme.color,
-                                )
+                            tooltip: AppLocalizations.of(context)!.pause,
+                            onPressed: audioHandler.pause,
+                            icon: const Icon(
+                              Icons.pause_rounded,
+                            ),
+                            color: Theme.of(context).iconTheme.color,
+                          )
                               : IconButton(
-                                  tooltip: AppLocalizations.of(context)!.play,
-                                  onPressed: audioHandler.play,
-                                  icon: const Icon(
-                                    Icons.play_arrow_rounded,
-                                  ),
-                                  color: Theme.of(context).iconTheme.color,
-                                ),
+                            tooltip: AppLocalizations.of(context)!.play,
+                            onPressed: audioHandler.play,
+                            icon: const Icon(
+                              Icons.play_arrow_rounded,
+                            ),
+                            color: Theme.of(context).iconTheme.color,
+                          ),
                         )
                       else
                         Center(
@@ -842,29 +839,29 @@ class ControlButtons extends StatelessWidget {
                             child: Center(
                               child: playing
                                   ? FloatingActionButton(
-                                      elevation: 13,
-                                      tooltip:
-                                          AppLocalizations.of(context)!.pause,
-                                      backgroundColor: Colors.white,
-                                      onPressed: audioHandler.pause,
-                                      child: const Icon(
-                                        Icons.pause_rounded,
-                                        size: 50.0,
-                                        color: Colors.black,
-                                      ),
-                                    )
+                                elevation: 10,
+                                tooltip:
+                                AppLocalizations.of(context)!.pause,
+                                backgroundColor: Colors.white,
+                                onPressed: audioHandler.pause,
+                                child: const Icon(
+                                  Icons.pause_rounded,
+                                  size: 40.0,
+                                  color: Colors.black,
+                                ),
+                              )
                                   : FloatingActionButton(
-                                      elevation: 13,
-                                      tooltip:
-                                          AppLocalizations.of(context)!.play,
-                                      backgroundColor: Colors.white,
-                                      onPressed: audioHandler.play,
-                                      child: const Icon(
-                                        Icons.play_arrow_rounded,
-                                        size: 50.0,
-                                        color: Colors.black,
-                                      ),
-                                    ),
+                                elevation: 10,
+                                tooltip:
+                                AppLocalizations.of(context)!.play,
+                                backgroundColor: Colors.white,
+                                onPressed: audioHandler.play,
+                                child: const Icon(
+                                  Icons.play_arrow_rounded,
+                                  size: 40.0,
+                                  color: Colors.black,
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -893,10 +890,10 @@ class ControlButtons extends StatelessWidget {
             return !online
                 ? const SizedBox()
                 : DownloadButton(
-                    size: 20.0,
-                    icon: 'download',
-                    data: MediaItemConverter.mediaItemToMap(mediaItem),
-                  );
+              size: 20.0,
+              icon: 'download',
+              data: MediaItemConverter.mediaItemToMap(mediaItem),
+            );
           default:
             break;
         }
@@ -971,91 +968,91 @@ class NowPlayingStream extends StatelessWidget {
                 selectedColor: Theme.of(context).colorScheme.secondary,
                 child: ListTile(
                   contentPadding:
-                      const EdgeInsets.only(left: 16.0, right: 10.0),
+                  const EdgeInsets.only(left: 16.0, right: 10.0),
                   selected: queueStateIndex + index == queueState.queueIndex,
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: (queueStateIndex + index == queueState.queueIndex)
                         ? [
-                            IconButton(
-                              icon: const Icon(
-                                Icons.bar_chart_rounded,
-                              ),
-                              tooltip: AppLocalizations.of(context)!.playing,
-                              onPressed: () {},
-                            ),
-                          ]
+                      IconButton(
+                        icon: const Icon(
+                          Icons.bar_chart_rounded,
+                        ),
+                        tooltip: AppLocalizations.of(context)!.playing,
+                        onPressed: () {},
+                      ),
+                    ]
                         : [
-                            if (queue[queueStateIndex + index]
-                                .extras!['url']
-                                .toString()
-                                .startsWith('http')) ...[
-                              LikeButton(
-                                mediaItem: queue[queueStateIndex + index],
-                              ),
-                              DownloadButton(
-                                icon: 'download',
-                                size: 25.0,
-                                data: {
-                                  'id': queue[queueStateIndex + index].id,
-                                  'artist': queue[queueStateIndex + index]
-                                      .artist
-                                      .toString(),
-                                  'album': queue[queueStateIndex + index]
-                                      .album
-                                      .toString(),
-                                  'image': queue[queueStateIndex + index]
-                                      .artUri
-                                      .toString(),
-                                  'duration': queue[queueStateIndex + index]
-                                      .duration!
-                                      .inSeconds
-                                      .toString(),
-                                  'title': queue[queueStateIndex + index].title,
-                                  'url': queue[queueStateIndex + index]
-                                      .extras?['url']
-                                      .toString(),
-                                  'year': queue[queueStateIndex + index]
-                                      .extras?['year']
-                                      .toString(),
-                                  'language': queue[queueStateIndex + index]
-                                      .extras?['language']
-                                      .toString(),
-                                  'genre': queue[queueStateIndex + index]
-                                      .genre
-                                      ?.toString(),
-                                  '320kbps': queue[queueStateIndex + index]
-                                      .extras?['320kbps'],
-                                  'has_lyrics': queue[queueStateIndex + index]
-                                      .extras?['has_lyrics'],
-                                  'release_date': queue[queueStateIndex + index]
-                                      .extras?['release_date'],
-                                  'album_id': queue[queueStateIndex + index]
-                                      .extras?['album_id'],
-                                  'subtitle': queue[queueStateIndex + index]
-                                      .extras?['subtitle'],
-                                  'perma_url': queue[queueStateIndex + index]
-                                      .extras?['perma_url'],
-                                },
-                              ),
-                            ],
-                            ReorderableDragStartListener(
-                              key: Key(
-                                '${queue[queueStateIndex + index].id}#${queueStateIndex + index}',
-                              ),
-                              index: index,
-                              enabled: (queueStateIndex + index) !=
-                                  queueState.queueIndex,
-                              child: const Icon(Icons.drag_handle_rounded),
-                            ),
-                          ],
+                      if (queue[queueStateIndex + index]
+                          .extras!['url']
+                          .toString()
+                          .startsWith('http')) ...[
+                        LikeButton(
+                          mediaItem: queue[queueStateIndex + index],
+                        ),
+                        DownloadButton(
+                          icon: 'download',
+                          size: 25.0,
+                          data: {
+                            'id': queue[queueStateIndex + index].id,
+                            'artist': queue[queueStateIndex + index]
+                                .artist
+                                .toString(),
+                            'album': queue[queueStateIndex + index]
+                                .album
+                                .toString(),
+                            'image': queue[queueStateIndex + index]
+                                .artUri
+                                .toString(),
+                            'duration': queue[queueStateIndex + index]
+                                .duration!
+                                .inSeconds
+                                .toString(),
+                            'title': queue[queueStateIndex + index].title,
+                            'url': queue[queueStateIndex + index]
+                                .extras?['url']
+                                .toString(),
+                            'year': queue[queueStateIndex + index]
+                                .extras?['year']
+                                .toString(),
+                            'language': queue[queueStateIndex + index]
+                                .extras?['language']
+                                .toString(),
+                            'genre': queue[queueStateIndex + index]
+                                .genre
+                                ?.toString(),
+                            '320kbps': queue[queueStateIndex + index]
+                                .extras?['320kbps'],
+                            'has_lyrics': queue[queueStateIndex + index]
+                                .extras?['has_lyrics'],
+                            'release_date': queue[queueStateIndex + index]
+                                .extras?['release_date'],
+                            'album_id': queue[queueStateIndex + index]
+                                .extras?['album_id'],
+                            'subtitle': queue[queueStateIndex + index]
+                                .extras?['subtitle'],
+                            'perma_url': queue[queueStateIndex + index]
+                                .extras?['perma_url'],
+                          },
+                        ),
+                      ],
+                      ReorderableDragStartListener(
+                        key: Key(
+                          '${queue[queueStateIndex + index].id}#${queueStateIndex + index}',
+                        ),
+                        index: index,
+                        enabled: (queueStateIndex + index) !=
+                            queueState.queueIndex,
+                        child: const Icon(Icons.drag_handle_rounded),
+                      ),
+                    ],
                   ),
                   leading: Row(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       if (queue[queueStateIndex + index]
-                              .extras?['addedByAutoplay'] as bool? ??
+                          .extras?['addedByAutoplay'] as bool? ??
                           false)
                         Column(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -1103,50 +1100,50 @@ class NowPlayingStream extends StatelessWidget {
                         clipBehavior: Clip.antiAlias,
                         child: (queue[queueStateIndex + index].artUri == null)
                             ? const SizedBox.square(
-                                dimension: 50,
-                                child: Image(
-                                  image: AssetImage('assets/cover.jpg'),
-                                ),
-                              )
+                          dimension: 50,
+                          child: Image(
+                            image: AssetImage('assets/cover.jpg'),
+                          ),
+                        )
                             : SizedBox.square(
-                                dimension: 50,
-                                child: queue[queueStateIndex + index]
-                                        .artUri
-                                        .toString()
-                                        .startsWith('file:')
-                                    ? Image(
-                                        fit: BoxFit.cover,
-                                        image: FileImage(
-                                          File(
-                                            queue[queueStateIndex + index]
-                                                .artUri!
-                                                .toFilePath(),
-                                          ),
-                                        ),
-                                      )
-                                    : CachedNetworkImage(
-                                        fit: BoxFit.cover,
-                                        errorWidget:
-                                            (BuildContext context, _, __) =>
-                                                const Image(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage(
-                                            'assets/cover.jpg',
-                                          ),
-                                        ),
-                                        placeholder:
-                                            (BuildContext context, _) =>
-                                                const Image(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage(
-                                            'assets/cover.jpg',
-                                          ),
-                                        ),
-                                        imageUrl: queue[queueStateIndex + index]
-                                            .artUri
-                                            .toString(),
-                                      ),
+                          dimension: 50,
+                          child: queue[queueStateIndex + index]
+                              .artUri
+                              .toString()
+                              .startsWith('file:')
+                              ? Image(
+                            fit: BoxFit.cover,
+                            image: FileImage(
+                              File(
+                                queue[queueStateIndex + index]
+                                    .artUri!
+                                    .toFilePath(),
                               ),
+                            ),
+                          )
+                              : CachedNetworkImage(
+                            fit: BoxFit.cover,
+                            errorWidget:
+                                (BuildContext context, _, __) =>
+                            const Image(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                'assets/cover.jpg',
+                              ),
+                            ),
+                            placeholder:
+                                (BuildContext context, _) =>
+                            const Image(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                'assets/cover.jpg',
+                              ),
+                            ),
+                            imageUrl: queue[queueStateIndex + index]
+                                .artUri
+                                .toString(),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -1155,9 +1152,9 @@ class NowPlayingStream extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontWeight:
-                          queueStateIndex + index == queueState.queueIndex
-                              ? FontWeight.w600
-                              : FontWeight.normal,
+                      queueStateIndex + index == queueState.queueIndex
+                          ? FontWeight.w600
+                          : FontWeight.normal,
                     ),
                   ),
                   subtitle: Text(
@@ -1328,57 +1325,57 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                         valueListenable: done,
                         child: const CircularProgressIndicator(),
                         builder: (
-                          BuildContext context,
-                          bool value,
-                          Widget? child,
-                        ) {
+                            BuildContext context,
+                            bool value,
+                            Widget? child,
+                            ) {
                           return value
                               ? lyrics['lyrics'] == ''
-                                  ? emptyScreen(
-                                      context,
-                                      0,
-                                      ':( ',
-                                      100.0,
-                                      AppLocalizations.of(context)!.lyrics,
-                                      60.0,
-                                      AppLocalizations.of(context)!
-                                          .notAvailable,
-                                      20.0,
-                                      useWhite: true,
-                                    )
-                                  : lyrics['type'] == 'text'
-                                      ? SelectableText(
-                                          lyrics['lyrics'].toString(),
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                            fontSize: 16.0,
-                                          ),
-                                        )
-                                      : StreamBuilder<Duration>(
-                                          stream: AudioService.position,
-                                          builder: (context, snapshot) {
-                                            final position =
-                                                snapshot.data ?? Duration.zero;
-                                            return LyricsReader(
-                                              model: lyricsReaderModel,
-                                              position: position.inMilliseconds,
-                                              lyricUi:
-                                                  UINetease(highlight: false),
-                                              playing: true,
-                                              size: Size(
-                                                widget.width * 0.85,
-                                                widget.width * 0.85,
-                                              ),
-                                              emptyBuilder: () => Center(
-                                                child: Text(
-                                                  'Lyrics Not Found',
-                                                  style: lyricUI
-                                                      .getOtherMainTextStyle(),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        )
+                              ? emptyScreen(
+                            context,
+                            0,
+                            ':( ',
+                            100.0,
+                            AppLocalizations.of(context)!.lyrics,
+                            60.0,
+                            AppLocalizations.of(context)!
+                                .notAvailable,
+                            20.0,
+                            useWhite: true,
+                          )
+                              : lyrics['type'] == 'text'
+                              ? SelectableText(
+                            lyrics['lyrics'].toString(),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 16.0,
+                            ),
+                          )
+                              : StreamBuilder<Duration>(
+                            stream: AudioService.position,
+                            builder: (context, snapshot) {
+                              final position =
+                                  snapshot.data ?? Duration.zero;
+                              return LyricsReader(
+                                model: lyricsReaderModel,
+                                position: position.inMilliseconds,
+                                lyricUi:
+                                UINetease(highlight: false),
+                                playing: true,
+                                size: Size(
+                                  widget.width * 0.85,
+                                  widget.width * 0.85,
+                                ),
+                                emptyBuilder: () => Center(
+                                  child: Text(
+                                    'Lyrics Not Found',
+                                    style: lyricUI
+                                        .getOtherMainTextStyle(),
+                                  ),
+                                ),
+                              );
+                            },
+                          )
                               : child!;
                         },
                       ),
@@ -1389,10 +1386,10 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                   valueListenable: lyricsSource,
                   child: const CircularProgressIndicator(),
                   builder: (
-                    BuildContext context,
-                    String value,
-                    Widget? child,
-                  ) {
+                      BuildContext context,
+                      String value,
+                      Widget? child,
+                      ) {
                     if (value == '') {
                       return const SizedBox();
                     }
@@ -1429,7 +1426,7 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                       },
                       icon: const Icon(Icons.copy_rounded),
                       color:
-                          Theme.of(context).iconTheme.color!.withOpacity(0.6),
+                      Theme.of(context).iconTheme.color!.withOpacity(0.6),
                     ),
                   ),
                 ),
@@ -1485,27 +1482,27 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                 onHorizontalDragEnd: !enabled
                     ? null
                     : (DragEndDetails details) {
-                        if ((details.primaryVelocity ?? 0) > 100) {
-                          if (queueState.hasPrevious) {
-                            widget.audioHandler.skipToPrevious();
-                            Feedback.forTap(context);
-                          }
-                        } else if ((details.primaryVelocity ?? 0) < -100) {
-                          if (queueState.hasNext) {
-                            widget.audioHandler.skipToNext();
-                            Feedback.forTap(context);
-                          }
-                        }
-                      },
+                  if ((details.primaryVelocity ?? 0) > 100) {
+                    if (queueState.hasPrevious) {
+                      widget.audioHandler.skipToPrevious();
+                      Feedback.forTap(context);
+                    }
+                  } else if ((details.primaryVelocity ?? 0) < -100) {
+                    if (queueState.hasNext) {
+                      widget.audioHandler.skipToNext();
+                      Feedback.forTap(context);
+                    }
+                  }
+                },
                 onLongPress: !enabled
                     ? null
                     : () {
-                        if (!widget.offline) {
-                          Feedback.forLongPress(context);
-                          AddToPlaylist()
-                              .addToPlaylist(context, widget.mediaItem);
-                        }
-                      },
+                  if (!widget.offline) {
+                    Feedback.forLongPress(context);
+                    AddToPlaylist()
+                        .addToPlaylist(context, widget.mediaItem);
+                  }
+                },
                 // onVerticalDragStart: !enabled
                 //     ? null
                 //     : (_) {
@@ -1521,42 +1518,42 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                       ),
                       clipBehavior: Clip.antiAlias,
                       child:
-                          widget.mediaItem.artUri.toString().startsWith('file')
-                              ? Image(
-                                  fit: BoxFit.contain,
-                                  width: widget.width * 0.85,
-                                  gaplessPlayback: true,
-                                  errorBuilder: (
-                                    BuildContext context,
-                                    Object exception,
-                                    StackTrace? stackTrace,
-                                  ) {
-                                    return const Image(
-                                      fit: BoxFit.cover,
-                                      image: AssetImage('assets/cover.jpg'),
-                                    );
-                                  },
-                                  image: FileImage(
-                                    File(
-                                      widget.mediaItem.artUri!.toFilePath(),
-                                    ),
-                                  ),
-                                )
-                              : CachedNetworkImage(
-                                  fit: BoxFit.contain,
-                                  errorWidget: (BuildContext context, _, __) =>
-                                      const Image(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage('assets/cover.jpg'),
-                                  ),
-                                  placeholder: (BuildContext context, _) =>
-                                      const Image(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage('assets/cover.jpg'),
-                                  ),
-                                  imageUrl: widget.mediaItem.artUri.toString(),
-                                  width: widget.width * 0.85,
-                                ),
+                      widget.mediaItem.artUri.toString().startsWith('file')
+                          ? Image(
+                        fit: BoxFit.contain,
+                        width: widget.width * 0.85,
+                        gaplessPlayback: true,
+                        errorBuilder: (
+                            BuildContext context,
+                            Object exception,
+                            StackTrace? stackTrace,
+                            ) {
+                          return const Image(
+                            fit: BoxFit.cover,
+                            image: AssetImage('assets/cover.jpg'),
+                          );
+                        },
+                        image: FileImage(
+                          File(
+                            widget.mediaItem.artUri!.toFilePath(),
+                          ),
+                        ),
+                      )
+                          : CachedNetworkImage(
+                        fit: BoxFit.contain,
+                        errorWidget: (BuildContext context, _, __) =>
+                        const Image(
+                          fit: BoxFit.cover,
+                          image: AssetImage('assets/cover.jpg'),
+                        ),
+                        placeholder: (BuildContext context, _) =>
+                        const Image(
+                          fit: BoxFit.cover,
+                          image: AssetImage('assets/cover.jpg'),
+                        ),
+                        imageUrl: widget.mediaItem.artUri.toString(),
+                        width: widget.width * 0.85,
+                      ),
                     ),
                     ValueListenableBuilder(
                       valueListenable: dragging,
@@ -1569,24 +1566,24 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                               onVerticalDragEnd: !dragging.value
                                   ? null
                                   : (_) {
-                                      dragging.value = false;
-                                    },
+                                dragging.value = false;
+                              },
                               onVerticalDragUpdate: !dragging.value
                                   ? null
                                   : (DragUpdateDetails details) {
-                                      if (details.delta.dy != 0.0) {
-                                        double volume =
-                                            widget.audioHandler.volume.value;
-                                        volume -= details.delta.dy / 150;
-                                        if (volume < 0) {
-                                          volume = 0;
-                                        }
-                                        if (volume > 1.0) {
-                                          volume = 1.0;
-                                        }
-                                        widget.audioHandler.setVolume(volume);
-                                      }
-                                    },
+                                if (details.delta.dy != 0.0) {
+                                  double volume =
+                                      widget.audioHandler.volume.value;
+                                  volume -= details.delta.dy / 150;
+                                  if (volume < 0) {
+                                    volume = 0;
+                                  }
+                                  if (volume > 1.0) {
+                                    volume = 1.0;
+                                  }
+                                  widget.audioHandler.setVolume(volume);
+                                }
+                              },
                               child: SizedBox(
                                 width: 60.0,
                                 height: widget.width * 0.7,
@@ -1609,27 +1606,27 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                                               data: SliderTheme.of(context)
                                                   .copyWith(
                                                 thumbShape:
-                                                    HiddenThumbComponentShape(),
+                                                HiddenThumbComponentShape(),
                                                 activeTrackColor:
-                                                    Theme.of(context)
-                                                        .colorScheme
-                                                        .secondary,
+                                                Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary,
                                                 inactiveTrackColor:
-                                                    Theme.of(context)
-                                                        .colorScheme
-                                                        .secondary
-                                                        .withOpacity(0.4),
+                                                Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary
+                                                    .withOpacity(0.4),
                                                 trackShape:
-                                                    const RoundedRectSliderTrackShape(),
+                                                const RoundedRectSliderTrackShape(),
                                                 disabledActiveTrackColor:
-                                                    Theme.of(context)
-                                                        .colorScheme
-                                                        .secondary,
+                                                Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary,
                                                 disabledInactiveTrackColor:
-                                                    Theme.of(context)
-                                                        .colorScheme
-                                                        .secondary
-                                                        .withOpacity(0.4),
+                                                Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary
+                                                    .withOpacity(0.4),
                                               ),
                                               child: ExcludeSemantics(
                                                 child: Slider(
@@ -1650,8 +1647,8 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                                           volumeValue == 0
                                               ? Icons.volume_off_rounded
                                               : volumeValue > 0.6
-                                                  ? Icons.volume_up_rounded
-                                                  : Icons.volume_down_rounded,
+                                              ? Icons.volume_up_rounded
+                                              : Icons.volume_down_rounded,
                                           color: Colors.white,
                                         ),
                                       ),
@@ -1664,10 +1661,10 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                         },
                       ),
                       builder: (
-                        BuildContext context,
-                        bool value,
-                        Widget? child,
-                      ) {
+                          BuildContext context,
+                          bool value,
+                          Widget? child,
+                          ) {
                         return Visibility(
                           visible: value,
                           child: child!,
@@ -1719,7 +1716,7 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                                 ),
                                 Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  MainAxisAlignment.spaceBetween,
                                   children: [
                                     Align(
                                       alignment: Alignment.bottomLeft,
@@ -1734,7 +1731,7 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                                             Icons.volume_up_rounded,
                                           ),
                                           color:
-                                              Theme.of(context).iconTheme.color,
+                                          Theme.of(context).iconTheme.color,
                                         ),
                                       ),
                                     ),
@@ -1755,7 +1752,7 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                                             Icons.playlist_add_rounded,
                                           ),
                                           color:
-                                              Theme.of(context).iconTheme.color,
+                                          Theme.of(context).iconTheme.color,
                                         ),
                                       ),
                                     ),
@@ -1784,10 +1781,10 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                         size: 60.0,
                       ),
                       builder: (
-                        BuildContext context,
-                        int value,
-                        Widget? child,
-                      ) {
+                          BuildContext context,
+                          int value,
+                          Widget? child,
+                          ) {
                         return Visibility(
                           visible: value != 0,
                           child: Card(
@@ -1803,20 +1800,20 @@ class _ArtWorkWidgetState extends State<ArtWorkWidget> {
                                   gradient: LinearGradient(
                                     colors: value == 1
                                         ? [
-                                            Colors.transparent,
-                                            Colors.black.withOpacity(0.4),
-                                            Colors.black.withOpacity(0.7),
-                                          ]
+                                      Colors.transparent,
+                                      Colors.black.withOpacity(0.4),
+                                      Colors.black.withOpacity(0.7),
+                                    ]
                                         : [
-                                            Colors.black.withOpacity(0.7),
-                                            Colors.black.withOpacity(0.4),
-                                            Colors.transparent,
-                                          ],
+                                      Colors.black.withOpacity(0.7),
+                                      Colors.black.withOpacity(0.4),
+                                      Colors.transparent,
+                                    ],
                                   ),
                                 ),
                                 child: Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                  MainAxisAlignment.spaceAround,
                                   children: [
                                     Visibility(
                                       visible: value == -1,
@@ -1878,7 +1875,7 @@ class NameNControls extends StatelessWidget {
         AudioService.position,
         _bufferedPositionStream,
         _durationStream,
-        (position, bufferedPosition, duration) =>
+            (position, bufferedPosition, duration) =>
             PositionData(position, bufferedPosition, duration ?? Duration.zero),
       );
 
@@ -1888,18 +1885,18 @@ class NameNControls extends StatelessWidget {
     final double seekBoxHeight = height > 500 ? height * 0.15 : height * 0.2;
     final double controlBoxHeight = offline
         ? height > 500
-            ? height * 0.2
-            : height * 0.25
+        ? height * 0.2
+        : height * 0.25
         : (height < 350
-            ? height * 0.4
-            : height > 500
-                ? height * 0.2
-                : height * 0.3);
+        ? height * 0.4
+        : height > 500
+        ? height * 0.2
+        : height * 0.3);
     final double nowplayingBoxHeight = min(70, height * 0.15);
     // height > 500 ? height * 0.4 : height * 0.15;
     // final double minNowplayingBoxHeight = height * 0.15;
     final String gradientType = Hive.box('settings')
-        .get('gradientType', defaultValue: 'halfDark')
+        .get('gradientType', defaultValue: 'fullMix')
         .toString();
     final List<String> artists = mediaItem.artist.toString().split(', ');
     return SizedBox(
@@ -1948,7 +1945,7 @@ class NameNControls extends StatelessWidget {
                     }
                   },
                   itemBuilder: (BuildContext context) =>
-                      <PopupMenuEntry<String>>[
+                  <PopupMenuEntry<String>>[
                     if (mediaItem.extras?['album_id'] != null)
                       PopupMenuItem<String>(
                         value: '0',
@@ -1966,7 +1963,7 @@ class NameNControls extends StatelessWidget {
                       ),
                     if (mediaItem.artist != null)
                       ...artists.map(
-                        (String artist) => PopupMenuItem<String>(
+                            (String artist) => PopupMenuItem<String>(
                           value: artist,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -1998,8 +1995,8 @@ class NameNControls extends StatelessWidget {
                           /// Title container
                           AnimatedText(
                             text: mediaItem.title
-                                // .split(' (')[0]
-                                // .split('|')[0]
+                            // .split(' (')[0]
+                            // .split('|')[0]
                                 .trim(),
                             pauseAfterRound: const Duration(seconds: 3),
                             showFadingOnlyWhenScrolling: false,
@@ -2020,8 +2017,8 @@ class NameNControls extends StatelessWidget {
                           /// Subtitle container
                           AnimatedText(
                             text: ((mediaItem.album ?? '').isEmpty ||
-                                    ((mediaItem.album ?? '') ==
-                                        (mediaItem.artist ?? '')))
+                                ((mediaItem.album ?? '') ==
+                                    (mediaItem.artist ?? '')))
                                 ? '${(mediaItem.artist ?? "").isEmpty ? "Unknown" : mediaItem.artist}'
                                 : '${(mediaItem.artist ?? "").isEmpty ? "Unknown" : mediaItem.artist} • ${mediaItem.album}',
                             pauseAfterRound: const Duration(seconds: 3),
@@ -2089,9 +2086,9 @@ class NameNControls extends StatelessWidget {
                                 stream: audioHandler.playbackState
                                     .map(
                                       (state) =>
-                                          state.shuffleMode ==
-                                          AudioServiceShuffleMode.all,
-                                    )
+                                  state.shuffleMode ==
+                                      AudioServiceShuffleMode.all,
+                                )
                                     .distinct(),
                                 builder: (context, snapshot) {
                                   final shuffleModeEnabled =
@@ -2099,15 +2096,15 @@ class NameNControls extends StatelessWidget {
                                   return IconButton(
                                     icon: shuffleModeEnabled
                                         ? const Icon(
-                                            Icons.shuffle_rounded,
-                                          )
+                                      Icons.shuffle_rounded,
+                                    )
                                         : Icon(
-                                            Icons.shuffle_rounded,
-                                            color:
-                                                Theme.of(context).disabledColor,
-                                          ),
+                                      Icons.shuffle_rounded,
+                                      color:
+                                      Theme.of(context).disabledColor,
+                                    ),
                                     tooltip:
-                                        AppLocalizations.of(context)!.shuffle,
+                                    AppLocalizations.of(context)!.shuffle,
                                     onPressed: () async {
                                       final enable = !shuffleModeEnabled;
                                       await audioHandler.setShuffleMode(
@@ -2159,7 +2156,7 @@ class NameNControls extends StatelessWidget {
                                   return IconButton(
                                     icon: icons[index],
                                     tooltip:
-                                        'Repeat ${texts[(index + 1) % texts.length]}',
+                                    'Repeat ${texts[(index + 1) % texts.length]}',
                                     onPressed: () async {
                                       await Hive.box('settings').put(
                                         'repeatMode',
@@ -2167,9 +2164,9 @@ class NameNControls extends StatelessWidget {
                                       );
                                       await audioHandler.setRepeatMode(
                                         cycleModes[
-                                            (cycleModes.indexOf(repeatMode) +
-                                                    1) %
-                                                cycleModes.length],
+                                        (cycleModes.indexOf(repeatMode) +
+                                            1) %
+                                            cycleModes.length],
                                       );
                                     },
                                   );
@@ -2209,13 +2206,13 @@ class NameNControls extends StatelessWidget {
             margin: EdgeInsets.zero,
             padding: EdgeInsets.zero,
             boxShadow: const [],
-            color: ['fullLight', 'fullMix'].contains(gradientType)
+            color: ['fullMix', 'fullMix'].contains(gradientType)
                 ? Theme.of(context).brightness == Brightness.dark
-                    ? const Color.fromRGBO(0, 0, 0, 0.05)
-                    : const Color.fromRGBO(255, 255, 255, 0.05)
+                ? const Color.fromRGBO(0, 0, 0, 0.05)
+                : const Color.fromRGBO(255, 255, 255, 0.05)
                 : Theme.of(context).brightness == Brightness.dark
-                    ? const Color.fromRGBO(0, 0, 0, 0.5)
-                    : const Color.fromRGBO(255, 255, 255, 0.5),
+                ? const Color.fromRGBO(0, 0, 0, 0.5)
+                : const Color.fromRGBO(255, 255, 255, 0.5),
             // gradientColor![1]!.withOpacity(0.5),
             // useBlurForNowPlaying
             // ? Theme.of(context).brightness == Brightness.dark
@@ -2226,34 +2223,46 @@ class NameNControls extends StatelessWidget {
             // : Colors.white,
             controller: panelController,
             panelBuilder: (ScrollController scrollController) {
-              return ShaderMask(
-                shaderCallback: (rect) {
-                  return const LinearGradient(
-                    end: Alignment.topCenter,
-                    begin: Alignment.center,
-                    colors: [
-                      Colors.black,
-                      Colors.black,
-                      Colors.black,
-                      Colors.transparent,
-                      Colors.transparent,
-                    ],
-                  ).createShader(
-                    Rect.fromLTRB(
-                      0,
-                      0,
-                      rect.width,
-                      rect.height,
+              return ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(15.0),
+                  topRight: Radius.circular(15.0),
+                ),
+                child: BackdropFilter(
+                  filter: ui.ImageFilter.blur(
+                    sigmaX: 8.0,
+                    sigmaY: 8.0,
+                  ),
+                  child: ShaderMask(
+                    shaderCallback: (rect) {
+                      return const LinearGradient(
+                        end: Alignment.topCenter,
+                        begin: Alignment.center,
+                        colors: [
+                          Colors.black,
+                          Colors.black,
+                          Colors.black,
+                          Colors.transparent,
+                          Colors.transparent,
+                        ],
+                      ).createShader(
+                        Rect.fromLTRB(
+                          0,
+                          0,
+                          rect.width,
+                          rect.height,
+                        ),
+                      );
+                    },
+                    blendMode: BlendMode.dstIn,
+                    child: NowPlayingStream(
+                      head: true,
+                      headHeight: nowplayingBoxHeight,
+                      audioHandler: audioHandler,
+                      scrollController: scrollController,
+                      panelController: panelController,
                     ),
-                  );
-                },
-                blendMode: BlendMode.dstIn,
-                child: NowPlayingStream(
-                  head: true,
-                  headHeight: nowplayingBoxHeight,
-                  audioHandler: audioHandler,
-                  scrollController: scrollController,
-                  panelController: panelController,
+                  ),
                 ),
               );
             },

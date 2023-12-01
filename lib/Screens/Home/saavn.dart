@@ -286,9 +286,7 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                                       ),
                                       clipBehavior: Clip.antiAlias,
                                       child: Column(
-
                                         children: [
-                                          AdMobWidget(adUnitId: 'ca-app-pub-2361280395457206/2787577102'),
                                           SizedBox.square(
                                             dimension: isHover
                                                 ? boxSize - 25

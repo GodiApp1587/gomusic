@@ -19,7 +19,6 @@
 
 import 'dart:math';
 
-import 'package:blackhole/CustomWidgets/admob_banner.dart';
 import 'package:blackhole/CustomWidgets/drawer.dart';
 import 'package:blackhole/CustomWidgets/textinput_dialog.dart';
 import 'package:blackhole/Screens/Home/saavn.dart';
@@ -231,7 +230,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 // margin: EdgeInsets.zero,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(
-                                    10.0,
+                                    8.0,
                                   ),
                                   color: Colors.transparent,
                                //   boxShadow: const [
@@ -243,37 +242,34 @@ class _HomeScreenState extends State<HomeScreen> {
                                   //  ),
                                 //  ],
                                 ),
-                                child: Center(
-                                  child: Row(
-
-                                    children: [
-                                      const SizedBox(
-                                        width: 10.0,
+                                child: Row(
+                                  children: [
+                                    const SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Icon(
+                                      CupertinoIcons.search,
+                                      color:
+                                          Theme.of(context).colorScheme.secondary,
+                                    ),
+                                    const SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Text(
+                                      AppLocalizations.of(
+                                        context,
+                                      )!
+                                          .searchText,
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .color,
+                                        fontWeight: FontWeight.normal,
                                       ),
-                                      Icon(
-                                        CupertinoIcons.search,
-                                        color:
-                                            Theme.of(context).colorScheme.secondary,
-                                      ),
-                                      const SizedBox(
-                                        width: 10.0,
-                                      ),
-                                      Text(
-                                        AppLocalizations.of(
-                                          context,
-                                        )!
-                                            .searchText,
-                                        style: TextStyle(
-                                          fontSize: 16.0,
-                                          color: Theme.of(context)
-                                              .textTheme
-                                              .bodySmall!
-                                              .color,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -289,18 +285,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         },
-
                       ),
-
-
-
                     ),
-
                   ),
 
 
                 ];
-
               },
               body: SaavnHomePage(),
             ),

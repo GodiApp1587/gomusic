@@ -4,7 +4,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 class AssetsRes {
   static const String PLUGIN_NAME = 'blackhole';
-  static const String PLUGIN_VERSION = '1.15.11+42';
+  static const String PLUGIN_VERSION = '1.15.12+43';
   static const String BACK = 'assets/back.png';
   static const String BLACK = 'assets/black.png';
   static const String BOTTOM = 'assets/bottom.png';

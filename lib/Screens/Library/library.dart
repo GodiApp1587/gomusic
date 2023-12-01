@@ -19,6 +19,7 @@
 
 import 'dart:io';
 
+import 'package:blackhole/CustomWidgets/admob_banner.dart';
 import 'package:blackhole/CustomWidgets/drawer.dart';
 import 'package:blackhole/Screens/Library/liked.dart';
 import 'package:blackhole/Screens/LocalMusic/downed_songs.dart';
@@ -69,6 +70,7 @@ class _LibraryPageState extends State<LibraryPage> {
             automaticallyImplyLeading: false,
             leading: rotated ? null : homeDrawer(context: context),
           ),
+          AdMobWidget(adUnitId: 'ca-app-pub-2361280395457206/1695265948'),
           LibraryTile(
             title: AppLocalizations.of(context)!.nowPlaying,
             icon: Icons.queue_music_rounded,

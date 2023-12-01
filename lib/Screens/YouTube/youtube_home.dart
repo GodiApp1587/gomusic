@@ -17,6 +17,7 @@
  * Copyright (c) 2021-2023, Ankit Sangwan
  */
 
+import 'package:blackhole/CustomWidgets/admob_banner.dart';
 import 'package:blackhole/CustomWidgets/drawer.dart';
 import 'package:blackhole/CustomWidgets/on_hover.dart';
 import 'package:blackhole/Screens/Search/search.dart';
@@ -140,6 +141,7 @@ class _YouTubeState extends State<YouTube>
                   padding: const EdgeInsets.fromLTRB(10, 70, 10, 0),
                   child: Column(
                     children: [
+                      AdMobWidget(adUnitId: 'ca-app-pub-2361280395457206/1695265948'),
                       if (headList.isNotEmpty)
                         CarouselSlider.builder(
                           itemCount: headList.length,
@@ -206,6 +208,7 @@ class _YouTubeState extends State<YouTube>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
+                              Center(child: AdMobWidget(adUnitId: 'ca-app-pub-2361280395457206/1695265948')),
                               SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
@@ -288,16 +291,19 @@ class _YouTubeState extends State<YouTube>
                                                 ),
                                               );
                                       },
+
                                       child: SizedBox(
                                         width: item['type'] != 'playlist'
                                             ? (boxSize - 30) * (16 / 9)
                                             : boxSize - 30,
                                         child: HoverBox(
                                           child: Column(
+
                                             children: [
                                               Expanded(
                                                 child: Stack(
                                                   children: [
+
                                                     Positioned.fill(
                                                       child: Card(
                                                         elevation: 5,
@@ -400,6 +406,7 @@ class _YouTubeState extends State<YouTube>
                                                 ),
                                                 child: Column(
                                                   children: [
+
                                                     Text(
                                                       '${item["title"]}',
                                                       textAlign: TextAlign.center,

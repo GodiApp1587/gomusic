@@ -146,8 +146,10 @@ class _TopChartsState extends State<TopCharts>
               return true;
             },
             child: TabBarView(
+
               physics: const CustomPhysics(),
               children: [
+
                 ValueListenableBuilder(
                   valueListenable: Hive.box('settings').listenable(),
                   builder: (BuildContext context, Box box, Widget? widget) {
@@ -311,6 +313,7 @@ class _TopPageState extends State<TopPage>
         final List showList = isGlobal ? globalSongs : localSongs;
         return Column(
           children: [
+            AdMobWidget(adUnitId: 'ca-app-pub-2361280395457206/1133789473'),
             if (!(Hive.box('settings').get('spotifySigned', defaultValue: false)
                 as bool))
               Expanded(
@@ -325,6 +328,7 @@ class _TopPageState extends State<TopPage>
                     ),
                     child: Text(AppLocalizations.of(context)!.signInSpotify),
                   ),
+
                 ),
               )
             else if (showList.isEmpty)

@@ -22,6 +22,7 @@ import 'package:blackhole/CustomWidgets/snackbar.dart';
 import 'package:blackhole/Services/download.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive/hive.dart';
 
 class DownloadButton extends StatefulWidget {
@@ -47,11 +48,36 @@ class _DownloadButtonState extends State<DownloadButton> {
   @override
   void initState() {
     super.initState();
+    loadInterstitialAd();
     down = Download(widget.data['id'].toString());
     down.addListener(() {
       setState(() {});
     });
   }
+  InterstitialAd? _interstitialAd;
+  void loadInterstitialAd() {
+    InterstitialAd.load(
+        adUnitId: 'ca-app-pub-2361280395457206/8145313828',
+        request: const AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          onAdLoaded: (ad) {
+            _interstitialAd = ad;
+          },
+          onAdFailedToLoad: (error) {
+            print('Failed to load interstitial ad: $error');
+          },
+        ));
+  }
+
+
+  void _showInterstitialAd() async {
+    if (_interstitialAd == null) {
+      return;
+    }
+    await _interstitialAd!.show();
+    _interstitialAd = null;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +91,7 @@ class _DownloadButtonState extends State<DownloadButton> {
                 color: Theme.of(context).colorScheme.secondary,
                 iconSize: widget.size ?? 24.0,
                 onPressed: () {
+                  _showInterstitialAd();
                   down.prepareDownload(context, widget.data);
                 },
               )
@@ -79,6 +106,7 @@ class _DownloadButtonState extends State<DownloadButton> {
                     color: Theme.of(context).iconTheme.color,
                     tooltip: 'Download',
                     onPressed: () {
+                      _showInterstitialAd();
                       down.prepareDownload(context, widget.data);
                     },
                   )
@@ -214,8 +242,10 @@ class _MultiDownloadButtonState extends State<MultiDownloadButton> {
                       iconSize: 25.0,
                       tooltip: AppLocalizations.of(context)!.down,
                       onPressed: () async {
+
                         for (final items in widget.data) {
                           down.prepareDownload(
+
                             context,
                             items as Map,
                             createFolder: true,
@@ -223,6 +253,7 @@ class _MultiDownloadButtonState extends State<MultiDownloadButton> {
                           );
                           await _waitUntilDone(items['id'].toString());
                           setState(() {
+
                             done++;
                           });
                         }

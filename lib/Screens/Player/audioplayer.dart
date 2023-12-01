@@ -367,6 +367,7 @@ class _PlayScreenState extends State<PlayScreen> {
                                       );
                                     },
                                   ),
+
                                   ListTile(
                                     title: Text(
                                       AppLocalizations.of(context)!.sleepAfter,
@@ -606,6 +607,7 @@ class _PlayScreenState extends State<PlayScreen> {
                     }
                     return Column(
                       children: [
+
                         // Artwork
                         ArtWorkWidget(
                           cardKey: cardKey,
@@ -615,16 +617,20 @@ class _PlayScreenState extends State<PlayScreen> {
                           offline: offline,
                           getLyricsOnline: getLyricsOnline,
                         ),
-
+                       SizedBox(
+                           height: 35,
+                       child: AdMobWidget(adUnitId: 'ca-app-pub-2361280395457206/9382184272')),
                         // title and controls
-                        NameNControls(
-                          mediaItem: mediaItem,
-                          offline: offline,
-                          width: constraints.maxWidth,
-                          height: constraints.maxHeight -
-                              (constraints.maxWidth * 0.85),
-                          panelController: _panelController,
-                          audioHandler: audioHandler,
+                        Expanded(
+                          child: NameNControls(
+                            mediaItem: mediaItem,
+                            offline: offline,
+                            width: constraints.maxWidth,
+                            height: constraints.maxHeight -
+                                (constraints.maxWidth * 0.85),
+                            panelController: _panelController,
+                            audioHandler: audioHandler,
+                          ),
                         ),
                       ],
                     );

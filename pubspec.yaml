@@ -22,7 +22,7 @@ dependencies:
 
   cached_network_image: ^3.3.0
   carousel_slider: ^4.2.1
-  connectivity_plus: ^5.0.1
+  connectivity_plus: 5.0.2
   cupertino_icons: ^1.0.6
   dart_des: ^1.0.2
   device_info_plus: ^9.0.2
@@ -39,6 +39,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_lyric: ^2.0.4+6
+
   get_it: ^7.6.4
   glass_kit: ^3.0.0
 
@@ -48,7 +49,7 @@ dependencies:
   google_mobile_ads: ^3.1.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  home_widget: ^0.3.0
+  home_widget: 0.3.1
   html_unescape: ^2.0.0
 
   just_audio: ^0.9.36
@@ -60,10 +61,10 @@ dependencies:
   metadata_god: ^0.5.2+1
   miniplayer: ^1.0.1
   on_audio_query: ^2.9.0
-  package_info_plus: ^4.0.2
+  package_info_plus: 5.0.1
   palette_generator: ^0.3.3+3
   path_provider: ^2.1.1
-  permission_handler: ^11.0.1
+  permission_handler: 11.1.0
   persistent_bottom_nav_bar:
     git:
       url: https://github.com/Sangwan5688/PersistentBottomNavBar
@@ -74,10 +75,14 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   ultimate_bottom_navbar: ^0.0.6
 
-  url_launcher: ^6.1.14
+  url_launcher: ^6.2.1
   uuid: ^3.0.7
   workmanager: ^0.5.1
   youtube_explode_dart: ^2.0.2
+
+
+
+
 
 dev_dependencies:
   flutter_test:
@@ -93,23 +98,16 @@ flutter:
 
   assets:
     - assets/
-    - assets/back.png
-    - assets/black.png
-    - assets/bottom.png
     - assets/cover.png
     - assets/drawer.png
     - assets/fondo.png
     - assets/fondo_ap_settings.png
     - assets/fondo_app.png
-    - assets/fondo_like.png
     - assets/fondo_theme.png
     - assets/google.png
-    - assets/inicio.png
-    - assets/landing.png
     - assets/music.png
     - assets/play_black.png
     - assets/play_white.png
-    - assets/splash.png
     - assets/store_black.png
     - assets/store_white.png
 

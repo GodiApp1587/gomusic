@@ -18,6 +18,7 @@
  */
 
 import 'package:blackhole/APIs/api.dart';
+import 'package:blackhole/CustomWidgets/rewarded_ads.dart';
 import 'package:blackhole/CustomWidgets/snackbar.dart';
 import 'package:blackhole/Services/download.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +45,7 @@ class _DownloadButtonState extends State<DownloadButton> {
   late Download down;
   final Box downloadsBox = Hive.box('downloads');
   final ValueNotifier<bool> showStopButton = ValueNotifier<bool>(false);
+  bool isRewardedAdLoaded = false;
 
   @override
   void initState() {
@@ -91,7 +93,8 @@ class _DownloadButtonState extends State<DownloadButton> {
                 color: Theme.of(context).colorScheme.secondary,
                 iconSize: widget.size ?? 24.0,
                 onPressed: () {
-                  _showInterstitialAd();
+
+
                   down.prepareDownload(context, widget.data);
                 },
               )
@@ -106,7 +109,12 @@ class _DownloadButtonState extends State<DownloadButton> {
                     color: Theme.of(context).iconTheme.color,
                     tooltip: 'Download',
                     onPressed: () {
-                      _showInterstitialAd();
+                      if (!isRewardedAdLoaded) { // Verificar si el anuncio ya está cargado
+                        AdReWarded.instance.createRewardedAd(); // Si no está cargado, cargar el anuncio
+                        isRewardedAdLoaded = true; // Actualizar el estado para indicar que el anuncio está cargado
+                      }
+
+
                       down.prepareDownload(context, widget.data);
                     },
                   )
@@ -231,7 +239,9 @@ class _MultiDownloadButtonState extends State<MultiDownloadButton> {
                 color: Theme.of(context).colorScheme.secondary,
                 iconSize: 25.0,
                 tooltip: AppLocalizations.of(context)!.downDone,
-                onPressed: () {},
+                onPressed: () {
+
+                },
               )
             : down.progress == 0
                 ? Center(
@@ -355,7 +365,9 @@ class _AlbumDownloadButtonState extends State<AlbumDownloadButton> {
                       color: Theme.of(context).iconTheme.color,
                       tooltip: AppLocalizations.of(context)!.down,
                       onPressed: () async {
+
                         ShowSnackBar().showSnackBar(
+
                           context,
                           '${AppLocalizations.of(context)!.downingAlbum} "${widget.albumName}"',
                         );

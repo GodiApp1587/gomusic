@@ -47,12 +47,15 @@ import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:sizer/sizer.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-await MobileAds.instance.initialize();
+
+  final WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+
+
   // Paint.enableDithering = true; No longer needed
 
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    await Hive.initFlutter('BlackHole/Database');
+    await Hive.initFlutter('GoMusic/Database');
   } else if (Platform.isIOS) {
     await Hive.initFlutter('Database');
   } else {
@@ -68,8 +71,12 @@ await MobileAds.instance.initialize();
     setOptimalDisplayMode();
   }
   await startService();
+
   runApp(MyApp());
+
+
 }
+
 
 Future<void> setOptimalDisplayMode() async {
   await FlutterDisplayMode.setHighRefreshRate();
@@ -94,6 +101,7 @@ Future<void> setOptimalDisplayMode() async {
 Future<void> startService() async {
   await initializeLogging();
   MetadataGod.initialize();
+  await MobileAds.instance.initialize();
   final audioHandlerHelper = AudioHandlerHelper();
   final AudioPlayerHandler audioHandler =
       await audioHandlerHelper.getAudioHandler();
@@ -160,7 +168,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale _locale = const Locale('en', 'es');
+  Locale _locale = const Locale('en', '');
   late StreamSubscription _intentTextStreamSubscription;
   late StreamSubscription _intentDataStreamSubscription;
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -175,6 +183,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+
     HomeWidget.setAppGroupId('com.godimexico.gomusic');
     HomeWidget.registerBackgroundCallback(backgroundCallback);
     final String systemLangCode = Platform.localeName.substring(0, 2);
@@ -328,6 +337,7 @@ class _MyAppState extends State<MyApp> {
                 supportedLocales: LanguageCodes.languageCodes.entries
                     .map((languageCode) => Locale(languageCode.value, ''))
                     .toList(),
+
                 routes: namedRoutes,
                 navigatorKey: navigatorKey,
                 onGenerateRoute: (RouteSettings settings) {

@@ -15,7 +15,7 @@ class AdReWarded{
   static AdReWarded instance=AdReWarded._();
   void createRewardedAd() {
     RewardedAd.load(
-        adUnitId:AdsId.rewardedAdUnitId,
+        adUnitId:'ca-app-pub-2361280395457206/5755560764',
         request:  const AdRequest(),
         rewardedAdLoadCallback: RewardedAdLoadCallback(
           onAdLoaded: (RewardedAd ad) {

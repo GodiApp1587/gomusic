@@ -111,7 +111,7 @@ class _LocalPlaylistsState extends State<LocalPlaylists> {
                   return ListTile(
                     leading: Card(
                       margin: EdgeInsets.zero,
-                      elevation: 5,
+                      elevation: 8,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7.0),
                       ),
@@ -125,8 +125,8 @@ class _LocalPlaylistsState extends State<LocalPlaylists> {
                           borderRadius: BorderRadius.circular(7.0),
                           child: const Image(
                             fit: BoxFit.cover,
-                            height: 50.0,
-                            width: 50.0,
+                            height: 35.0,
+                            width: 35.0,
                             image: AssetImage('assets/cover.png'),
                           ),
                         ),

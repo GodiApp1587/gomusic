@@ -98,10 +98,19 @@ class _PrefScreenState extends State<PrefScreen> {
                   ),
                 ),
               ),
-              AnimatingBg1(
+            // AnimatingBg1(
 
-              ),
-              Column(
+              //),
+        Container(
+           decoration: const BoxDecoration(
+             image: DecorationImage(
+              image: AssetImage('assets/fondo.png'), // Ruta de tu imagen
+               fit: BoxFit.cover, // Ajustar la imagen para que cubra todo el Container
+             ),
+            ),
+            ),
+
+        Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,

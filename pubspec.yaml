@@ -81,9 +81,9 @@ dependencies:
   workmanager: ^0.5.1
   youtube_explode_dart: ^2.0.2
 flutter_native_splash:
-  color: "#ffffff"
+
   background_image: "assets/splash_light.png" # Utilizando solo la imagen de fondo
-  color_dark: "#121212"
+
   background_image_dark: "assets/splash_dark.png" # Imagen de fondo para modo oscuro
 
   android_12:

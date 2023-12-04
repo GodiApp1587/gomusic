@@ -64,19 +64,19 @@ class _AuthScreenState extends State<AuthScreen> {
             children: [
 
 
-           //  AnimatingBg1(
+             AnimatingBg1(
 
-             // ),
+             ),
 
 
-              Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/init_app.png'), // Ruta de tu imagen
-                    fit: BoxFit.cover, // Ajustar la imagen para que cubra todo el Container
-                  ),
-                ),
-              ),
+            //  Container(
+              //  decoration: const BoxDecoration(
+              //    image: DecorationImage(
+               //     image: AssetImage('assets/init_app.png'), // Ruta de tu imagen
+               //     fit: BoxFit.cover, // Ajustar la imagen para que cubra todo el Container
+               //   ),
+             //   ),
+            //  ),
 
 
               Column(

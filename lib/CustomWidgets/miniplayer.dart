@@ -97,39 +97,45 @@ class _MiniPlayerState extends State<MiniPlayer> {
                 }
                 return Future.value(false);
               },
-              child: Card(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 2.0,
-                  vertical: 2.0,
+              child: Expanded(
+                child: Card(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 3.5,
+                    vertical: 1.0,
 
-                ),
-                elevation: 12,
-             color: Colors.transparent,
-                child: GlassContainer(
-blur:20,
-                  borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 10,
+                             color: Colors.transparent,
+                  child: Expanded(
+                    child: GlassContainer(
+                    blur:14,
+                      borderRadius: BorderRadius.circular(11),
 
-                  child: SizedBox(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        miniplayerTile(
-                          context: context,
-                          preferredMiniButtons: preferredMiniButtons,
-                          useDense: useDense,
-                          title: mediaItem?.title ?? '',
-                          subtitle: mediaItem?.artist ?? '',
-                          imagePath: (isLocal
-                                  ? mediaItem?.artUri?.toFilePath()
-                                  : mediaItem?.artUri?.toString()) ??
-                              '',
-                          isLocalImage: isLocal,
-                          isDummy: mediaItem == null,
+                      child: SizedBox(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Expanded(
+                              child: miniplayerTile(
+                                context: context,
+                                preferredMiniButtons: preferredMiniButtons,
+                                useDense: useDense,
+                                title: mediaItem?.title ?? '',
+                                subtitle: mediaItem?.artist ?? '',
+                                imagePath: (isLocal
+                                        ? mediaItem?.artUri?.toFilePath()
+                                        : mediaItem?.artUri?.toString()) ??
+                                    '',
+                                isLocalImage: isLocal,
+                                isDummy: mediaItem == null,
+                              ),
+                            ),
+                            positionSlider(
+                              mediaItem?.duration?.inSeconds.toDouble(),
+                            ),
+                          ],
                         ),
-                        positionSlider(
-                          mediaItem?.duration?.inSeconds.toDouble(),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),

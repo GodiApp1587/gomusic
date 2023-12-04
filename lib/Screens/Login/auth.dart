@@ -64,11 +64,19 @@ class _AuthScreenState extends State<AuthScreen> {
             children: [
 
 
-              AnimatingBg1(
+           //  AnimatingBg1(
 
+             // ),
+
+
+              Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/init_app.png'), // Ruta de tu imagen
+                    fit: BoxFit.cover, // Ajustar la imagen para que cubra todo el Container
+                  ),
+                ),
               ),
-
-
 
 
               Column(
@@ -124,9 +132,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                     // Puedes agregar más propiedades para personalizar la imagen según tus necesidades
                                   ),
                                 ),
-const SizedBox(
-  height: 37,
-),
+              const SizedBox(
+                height: 37,
+              ),
                                 Column(
                                   children: [
 

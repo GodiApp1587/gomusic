@@ -541,72 +541,75 @@ class _HomePageState extends State<HomePage> {
               ValueListenableBuilder(
                 valueListenable: _selectedIndex,
                 builder: (BuildContext context, int indexValue, Widget? child) {
-                  return NavigationRail(
-                    minWidth: 70.0,
-                    groupAlignment: 0.0,
-                    backgroundColor:
-                         Colors.transparent,
-                   //    Theme.of(context).cardColor,
-                    selectedIndex: indexValue,
-                    onDestinationSelected: (int index) {
-                      onItemTapped(index);
-                    },
-                    labelType: screenWidth > 1050
-                        ? NavigationRailLabelType.selected
-                        : NavigationRailLabelType.none,
-                    selectedLabelTextStyle: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontWeight: FontWeight.w600,
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: NavigationRail(
+                      minWidth: 70.0,
+                      groupAlignment: 0.0,
+                      backgroundColor:
+                           Colors.transparent,
+                     //    Theme.of(context).cardColor,
+                      selectedIndex: indexValue,
+                      onDestinationSelected: (int index) {
+                        onItemTapped(index);
+                      },
+                      labelType: screenWidth > 1050
+                          ? NavigationRailLabelType.selected
+                          : NavigationRailLabelType.none,
+                      selectedLabelTextStyle: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      unselectedLabelTextStyle: TextStyle(
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                      selectedIconTheme: Theme.of(context).iconTheme.copyWith(
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                      unselectedIconTheme: Theme.of(context).iconTheme,
+                      useIndicator: screenWidth < 1050,
+                      indicatorColor: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withOpacity(0.2),
+                      leading: homeDrawer(
+                        context: context,
+                        padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      ),
+                      destinations: sectionsToShow.map((e) {
+                        switch (e) {
+                          case 'Home':
+                            return NavigationRailDestination(
+                              icon: const Icon(Icons.home_rounded),
+                              label: Text(AppLocalizations.of(context)!.home),
+                            );
+                          case 'Top Charts':
+                            return NavigationRailDestination(
+                              icon: const Icon(Icons.trending_up_rounded),
+                              label: Text(
+                                AppLocalizations.of(context)!.topCharts,
+                              ),
+                            );
+                          case 'YouTube':
+                            return NavigationRailDestination(
+                              icon: const Icon(MdiIcons.youtube),
+                              label: Text(AppLocalizations.of(context)!.youTube),
+                            );
+                          case 'Library':
+                            return NavigationRailDestination(
+                              icon: const Icon(Icons.my_library_music_rounded),
+                              label: Text(AppLocalizations.of(context)!.library),
+                            );
+                          default:
+                            return NavigationRailDestination(
+                              icon: const Icon(Icons.settings_rounded),
+                              label: Text(
+                                AppLocalizations.of(context)!.settings,
+                              ),
+                            );
+                        }
+                      }).toList(),
                     ),
-                    unselectedLabelTextStyle: TextStyle(
-                      color: Theme.of(context).iconTheme.color,
-                    ),
-                    selectedIconTheme: Theme.of(context).iconTheme.copyWith(
-                          color: Theme.of(context).colorScheme.secondary,
-                        ),
-                    unselectedIconTheme: Theme.of(context).iconTheme,
-                    useIndicator: screenWidth < 1050,
-                    indicatorColor: Theme.of(context)
-                        .colorScheme
-                        .secondary
-                        .withOpacity(0.2),
-                    leading: homeDrawer(
-                      context: context,
-                      padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    ),
-                    destinations: sectionsToShow.map((e) {
-                      switch (e) {
-                        case 'Home':
-                          return NavigationRailDestination(
-                            icon: const Icon(Icons.home_rounded),
-                            label: Text(AppLocalizations.of(context)!.home),
-                          );
-                        case 'Top Charts':
-                          return NavigationRailDestination(
-                            icon: const Icon(Icons.trending_up_rounded),
-                            label: Text(
-                              AppLocalizations.of(context)!.topCharts,
-                            ),
-                          );
-                        case 'YouTube':
-                          return NavigationRailDestination(
-                            icon: const Icon(MdiIcons.youtube),
-                            label: Text(AppLocalizations.of(context)!.youTube),
-                          );
-                        case 'Library':
-                          return NavigationRailDestination(
-                            icon: const Icon(Icons.my_library_music_rounded),
-                            label: Text(AppLocalizations.of(context)!.library),
-                          );
-                        default:
-                          return NavigationRailDestination(
-                            icon: const Icon(Icons.settings_rounded),
-                            label: Text(
-                              AppLocalizations.of(context)!.settings,
-                            ),
-                          );
-                      }
-                    }).toList(),
                   );
                 },
               ),
@@ -635,37 +638,38 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
 
-                customWidget: Container(
-                  child: Column(
+                customWidget: Column(
 
-                    mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: MainAxisSize.min,
 
-                    children: [
+                  children: [
 
-                      Container(child: miniplayer),
-                    //  AdMobWidget(adUnitId: 'ca-app-pub-2361280395457206/2787577102'),
-                      if (!rotated)
-                        ValueListenableBuilder(
-                          valueListenable: _selectedIndex,
-                          builder: (
-                            BuildContext context,
-                            int indexValue,
-                            Widget? child,
-                          ) {
-                            return CustomBottomNavBar(
-                              currentIndex: indexValue,
+                    Expanded(child: Padding(
+                      padding: const EdgeInsets.all(1.0),
+                      child: Container(child: miniplayer),
+                    )),
+                  //  AdMobWidget(adUnitId: 'ca-app-pub-2361280395457206/2787577102'),
+                    if (!rotated)
+                      ValueListenableBuilder(
+                        valueListenable: _selectedIndex,
+                        builder: (
+                          BuildContext context,
+                          int indexValue,
+                          Widget? child,
+                        ) {
+                          return CustomBottomNavBar(
+                            currentIndex: indexValue,
 
 
-                              onTap: (index) {
-                                onItemTapped(index);
-                              },
-                              items: _navBarItems(context),
-                            );
-                          },
-                        ),
-                    ],
+                            onTap: (index) {
+                              onItemTapped(index);
+                            },
+                            items: _navBarItems(context),
+                          );
+                        },
+                      ),
+                  ],
 
-                  ),
                 ),
                 screens: sectionsToShow.map((e) {
                   switch (e) {

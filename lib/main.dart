@@ -36,6 +36,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -48,9 +49,10 @@ import 'package:sizer/sizer.dart';
 
 Future<void> main() async {
 
-  final WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-
-
+   WidgetsFlutterBinding.ensureInitialized();
+   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await MobileAds.instance.initialize();
 
   // Paint.enableDithering = true; No longer needed
 
@@ -74,7 +76,7 @@ Future<void> main() async {
 
   runApp(MyApp());
 
-
+   FlutterNativeSplash.remove();
 }
 
 
@@ -101,7 +103,7 @@ Future<void> setOptimalDisplayMode() async {
 Future<void> startService() async {
   await initializeLogging();
   MetadataGod.initialize();
-  await MobileAds.instance.initialize();
+
   final audioHandlerHelper = AudioHandlerHelper();
   final AudioPlayerHandler audioHandler =
       await audioHandlerHelper.getAudioHandler();

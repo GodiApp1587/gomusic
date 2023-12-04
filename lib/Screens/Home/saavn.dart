@@ -162,7 +162,9 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                 return ValueListenableBuilder(
                   valueListenable: Hive.box('settings').listenable(),
                   child: Column(
+
                     children: [
+                      Center(child: AdMobWidget(adUnitId: 'ca-app-pub-2361280395457206/1133789473')),
                       GestureDetector(
                         child: Row(
                           children: [
@@ -426,7 +428,7 @@ class _SaavnHomePageState extends State<SaavnHomePage>
                           child: Row(
 
                             children: [
-                              SizedBox(height: 20,),
+                              const SizedBox(height: 20),
                               Text(
                                 data['modules'][lists[idx]]?['title']
                                         ?.toString()

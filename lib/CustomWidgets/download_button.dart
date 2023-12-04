@@ -252,7 +252,7 @@ class _MultiDownloadButtonState extends State<MultiDownloadButton> {
                       iconSize: 25.0,
                       tooltip: AppLocalizations.of(context)!.down,
                       onPressed: () async {
-
+                        AdReWarded.instance.dispose();
                         for (final items in widget.data) {
                           down.prepareDownload(
 
@@ -365,7 +365,7 @@ class _AlbumDownloadButtonState extends State<AlbumDownloadButton> {
                       color: Theme.of(context).iconTheme.color,
                       tooltip: AppLocalizations.of(context)!.down,
                       onPressed: () async {
-
+                        AdReWarded.instance;
                         ShowSnackBar().showSnackBar(
 
                           context,
